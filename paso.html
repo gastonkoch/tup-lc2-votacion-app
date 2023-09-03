@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sistema de Publicación de Resultados Electorales</title>
-    <link rel="shortcut icon" type="image/png" href="favicon-16x16.png">
+    <link rel="shortcut icon" type="image/png" href="\img\icons\favicon-16x16.png">
     <!-- Estilos CSS -->
     <link rel="stylesheet" href="css/common.css" />
 </head>
@@ -17,8 +18,58 @@
         </div>
         <!--Barra de menú principal-->
         <ul>
+            <li>
+                <label for="año">Año</label>
+                <select name="año" id="año">
+                    <option value="1">2023</option>
+                    <option value="2">2022</option>
+                    <option value="3">2021</option>
+                    <option value="4">2020</option>
+                </select>
+            </li>
+            <li>
+                <label for="cargo">Cargo</label>
+                <select name="cargo" id="cargo">
+                    <option value="1">Presidente</option>
+                    <option value="2">Vicepresidente</option>
+                    <option value="3">Diputado</option>
+                    <option value="4">Senador</option>
+                </select>
+
+            </li>
+            <li>
+                <label for="provincias">Selecciona una provincia:</label>
+                <select id="provincias" name="provincias">
+                    <option value="1">Buenos Aires</option>
+                    <option value="2">Ciudad Autónoma de Buenos Aires</option>
+                    <option value="3">Catamarca</option>
+                    <option value="4">Chaco</option>
+                    <option value="5">Chubut</option>
+                    <option value="6">Córdoba</option>
+                    <option value="7">Corrientes</option>
+                    <option value="8">Entre Ríos</option>
+                    <option value="9">Formosa</option>
+                    <option value="10">Jujuy</option>
+                    <option value="11">La Pampa</option>
+                    <option value="12">La Rioja</option>
+                    <option value="13">Mendoza</option>
+                    <option value="14">Misiones</option>
+                    <option value="15">Neuquén</option>
+                    <option value="16">Río Negro</option>
+                    <option value="17">Salta</option>
+                    <option value="18">San Juan</option>
+                    <option value="19">San Luis</option>
+                    <option value="20">Santa Cruz</option>
+                    <option value="21">Santa Fe</option>
+                    <option value="22">Santiago del Estero</option>
+                    <option value="23">Tierra del Fuego, Antártida e Islas del Atlántico Sur</option>
+                    <option value="24">Tucumán</option>
+                </select>
+            </li>
+            
             <li><a class="active" href="#informes">Informes</a></li>
             <li><a href="#contact">Contacto</a></li>
+            <li><a href="index.html">Inicio</a></li>
         </ul>
     </header>
     <!-- Contenido principal de la página -->
