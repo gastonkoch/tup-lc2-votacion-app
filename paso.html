@@ -15,7 +15,9 @@
     <header>
         <!--Barra de logo portal-->
         <div class="header-page">
-            <img src="img/Logo_DINE_negativo.png" alt="logo" class="logo">
+            <a href="index.html">
+                <img src="img/Logo_DINE_negativo.png" alt="logo" class="logo">
+            </a>
         </div>
         <!--Barra de menú principal-->
         <ul>
@@ -39,7 +41,7 @@
 
             </li>
             <li>
-                <label for="provincias">Selecciona una provincia:</label>
+                <label for="provincias">Distrito</label>
                 <select id="provincias" name="provincias">
                     <option value="1">Buenos Aires</option>
                     <option value="2">Ciudad Autónoma de Buenos Aires</option>
@@ -50,7 +52,7 @@
                     <option value="7">Corrientes</option>
                     <option value="8">Entre Ríos</option>
                     <option value="9">Formosa</option>
-                    <option value="10">Jujuy</option>
+                    <option value="10">Jujuy</option>http://127.0.0.1:5500/paso.html
                     <option value="11">La Pampa</option>
                     <option value="12">La Rioja</option>
                     <option value="13">Mendoza</option>
@@ -69,7 +71,7 @@
             </li>
 
             <li><a class="active" href="informes.html">Informes</a></li>
-            <li><a href="#contact">Contacto</a></li>
+            <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="width: 12px"><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"/></svg>Filtrar</li>
             <li><a href="index.html">Inicio</a></li>
         </ul>
     </header>
@@ -77,7 +79,12 @@
     <main>
         <section id="sec-titulo">
             <!--Seccion para agregar una palicula favorita por codigo-->
-            <h2>Elecciones 2023 | Generales</h2>
+            <div class="elecciones">
+                <h2>Elecciones 2023 | Paso</h2>
+                <p>2023 > Generales > Provisorio > Senadores/as nacionales</p>
+            </div>
+            
+
             <button>+Agregar informe</button>
             <div>
 
@@ -263,10 +270,13 @@
                 C184.178,409.323,186.501,406.999,189.368,406.999z"></path>
                     <rect x="195.975" y="387.534" fill="#FFFFFF" width="69.013" height="14.393"></rect>
                 </svg>
-                <h4>participación sobre escrutado</h4>
+                <h4>Participación sobre escrutado</h4>
             </div>
             <p>Párrafo o subtítulo</p>
             <div>Imagen</div>
+        </section>
+        <section class="sec-messages">
+            <p>Error</p>
         </section>
         <section id="sec-contenido">
             <div class="chart-wrap horizontal">
@@ -290,12 +300,20 @@
                 20%"></div>
                 </div>
             </div>
+            
 
             <!--Seccion para contenido de la página-->
         </section>
     </main>
     <!--Pie de página-->
     <footer>
-        <p>Desarrollado con ♥ - LC2</p>
+        <img src="img/icons/Ministerio-del-Interior_pluma.1ab9a7a7.png" alt="">
+        <img src="img/icons/Logo_DINE_negativo.a88f983e.png" alt="">
+        <img src="img/icons/logos_001-10.4430c8d5.png" alt="">
+        <p>Resultados Provisorios en base a telegramas recibidos (Art. 43 Ley 26571 y Art. 105 Ley 19945). Los
+            porcentajes de las agrupaciones políticas son calculados sobre los votos válidos (PASO) conforme al art.
+            45 Ley 26.571 y afirmativos (Generales). No se incluyen los votos correspondientes a los electores
+            residentes en el exterior ni privados de la libertad. Al usar este sitio usted acepta los <a href="terminoscondiciones.html">Términos y
+            Condiciones</a></p>
     </footer>
 </body>
