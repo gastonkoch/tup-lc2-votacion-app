@@ -37,13 +37,17 @@
   font-family: 'Roboto', sans-serif;
 }
 
-html,
-body {
+html {
   margin: 0;
   padding: 0;
-  background-color: rgb(240, 240, 240);
+  background-color: rgb(240, 240, 240); 
 }
 
+body{
+  margin: 0;
+  padding: 0;
+  background-color: white;
+}
 .logo{
   width: 150px;
   padding: 5px;
@@ -64,11 +68,12 @@ ul {
   list-style-type: none;
 }
 
-.foot > img {
+.footer_imagen > img {
   width: 100px;
+  margin: auto 2px;
 }
 
-.foot > p {
+.footer_p > p {
   color: var(--texto-footer);
   width: 80%;
 }
@@ -78,6 +83,19 @@ p > a {
 }
 
 .foot {
-  display: inline;
+  display: flex;
+  align-items: center;
+  margin: 0 20px;
+  padding: 10px;
 }
 
+.footer_p{
+  width: 70%;
+  padding-right: 350px;
+}
+
+.footer_imagen{
+  width: 50%;
+  padding-left: 450px;
+  padding-bottom: 20px;
+}

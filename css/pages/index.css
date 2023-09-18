@@ -80,3 +80,66 @@ h3 {
 }
 
 
+#sec-titulo{
+    display: flex;
+    justify-content: center;
+    flex-direction:row;
+    padding: 1rem;
+    height: 500px;
+}
+
+.sec-titulotexto{
+    justify-content: flex-start;
+    width: 55%;
+} 
+
+.sec-tituloimg{
+    justify-content: flex-end;
+}
+
+#img_data{
+    width: 500px;
+}
+
+#sec-contenido > h3,#sec-contenido > p {
+    margin: 20px;
+}
+
+.Paso_Generales{
+    display: flex;
+    justify-content: center;
+    height: 130px;
+}
+
+.bloque_paso{
+    background-color: var(--magenta);
+    border-radius: 5px;
+    padding: 5px;
+    color: #FFF;
+    font-size: 10px;
+    text-transform: uppercase;
+    align-items: center;
+    display: flex;
+    width: 400px;
+    height: 70px;
+}
+
+.bloque_general{
+    background-color: var(--celeste);
+    border-radius: 5px;
+    padding: 5px;
+    color: #FFF;
+    font-size: 10px;
+    text-transform: uppercase;
+    align-items: center;
+    display: flex;
+    width: 400px;
+    height: 70px;
+}
+
+
+.bloque_general > a ,.bloque_paso > a{
+    text-decoration: none;
+    color: #FFF; 
+
+}
