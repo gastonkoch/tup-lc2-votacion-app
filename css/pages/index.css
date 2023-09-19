@@ -60,13 +60,10 @@ h3 {
 }
 
 .informes {
-    /* margin-left: 13px; */
     margin-right: 13px;
-    padding-top: 20px;
     background-color: var(--fondo-Menu);
     color: white;
     width: 100%;
-    /* height: 25px; */
     display: flex;
     justify-content: flex-end;
 }
@@ -77,24 +74,37 @@ h3 {
     padding: 5px 10px;
     border-radius: 20px;
     text-decoration: none;
+    align-items: center;
 }
 
 
 #sec-titulo{
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     flex-direction:row;
     padding: 1rem;
     height: 500px;
+    position: relative;
+    left: 100px;
+    width: 100%;
 }
 
 .sec-titulotexto{
     justify-content: flex-start;
-    width: 55%;
+    max-width: 780px;
+    margin-right: 100px;
+    line-height: 25px;
+    font-size: 20px;
+}
+
+.sec-titulotexto > p{
+    font-size: 14px;
 } 
 
 .sec-tituloimg{
     justify-content: flex-end;
+    /* position: relative; */
+    /* right: 20px; */
 }
 
 #img_data{
@@ -103,6 +113,8 @@ h3 {
 
 #sec-contenido > h3,#sec-contenido > p {
     margin: 20px;
+    position: relative;
+    left: 100px;
 }
 
 .Paso_Generales{
@@ -115,22 +127,17 @@ h3 {
     background-color: var(--magenta);
     border-radius: 5px;
     padding: 5px;
-    color: #FFF;
-    font-size: 10px;
-    text-transform: uppercase;
     align-items: center;
     display: flex;
     width: 400px;
     height: 70px;
+    margin-right: 20px;
 }
 
 .bloque_general{
     background-color: var(--celeste);
     border-radius: 5px;
     padding: 5px;
-    color: #FFF;
-    font-size: 10px;
-    text-transform: uppercase;
     align-items: center;
     display: flex;
     width: 400px;
@@ -138,8 +145,13 @@ h3 {
 }
 
 
-.bloque_general > a ,.bloque_paso > a{
-    text-decoration: none;
-    color: #FFF; 
-
+.bloque_general > a > p ,.bloque_paso > a > p{
+    color: #FFF;
+    font-size: 20px;
+    text-transform: uppercase;
 }
+
+.bloque_general > a,.bloque_paso > a{
+    text-decoration: none;
+}
+
