@@ -68,7 +68,7 @@
     padding: 5px;
     align-items: center;
     display: flex;
-    width: 400px;
+    width: 200px;
     height: 70px;
     margin-right: 10px;
 }
@@ -79,7 +79,7 @@
     padding: 5px;
     align-items: center;
     display: flex;
-    width: 400px;
+    width: 200px;
     height: 70px;
     margin-right: 10px;
 }
@@ -90,13 +90,15 @@
     padding: 5px;
     align-items: center;
     display: flex;
-    width: 400px;
+    width: 250px;
     height: 70px;
     margin-right: 20px;
 }
 
 .texto-tarjetas > h4,p {
     color: white;
+    align-items: center;
+    line-height: 0%;
 }
 
 .participacion > h4,p {
@@ -107,3 +109,191 @@
     color: white;
 }
 
+.submenu {
+    margin-right: 13px;
+    background-color: var(--fondo-Menu);
+    color: white;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.left{
+    display: flex;
+    align-items: center;
+    width: 350px;
+}
+
+
+.left > li {
+    margin-right: 10px;
+}
+
+.left > svg {
+    margin: auto 10px;
+}
+
+/* .right {
+    display: flex;
+    width: 900px;
+    justify-content: flex-end;
+} */
+/*
+.right > li > a {
+    color: white;
+    text-decoration: none;
+}  */
+
+
+.active {
+    border: 1px solid white;
+    color: white;
+    padding: 9px;
+    border-radius: 20px;
+    text-decoration: none;
+    align-items: center;
+    text-transform: uppercase;
+    font-size: 10px;
+    margin-right: 900px;
+}
+
+.filtrar {
+    display: flex;
+    border: 1px solid white;
+    background-color: white;
+    padding: 6px;
+    border-radius: 20px;
+    text-decoration: none;
+    align-items: center;
+    text-transform: uppercase;
+    font-size: 10px;
+    margin-top: 4px;
+}
+
+.filtrar > p {
+    color: var(--textos);
+    font-size: 10px;
+    margin-left: 5px;
+}
+
+.inicio {
+    background-color: var(--gris-claro);
+    border-radius: 5px;
+    padding: 10px;
+    text-transform: uppercase;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.inicio > a {
+    color: #fff;
+    font-size: 10px;
+    text-decoration: none;
+    width: 50px;
+    text-align: center;
+}
+
+.inicio > a:hover {
+    color: var(--textos);
+}
+
+select {
+    background-color: transparent;
+    border: none;
+    font-size: 14px;
+    height: 30px;
+    padding: 5px;
+    color: var(--celeste);
+    font-weight: bold;
+}
+
+label {
+    color: var(--celeste);
+}
+
+.verde {
+    background-color: var(--mensaje-usuario-verde);
+    border: 1px solid white;
+    width: 400px;
+    margin: 20px auto;
+    padding: 15px;
+    border-radius: 10px;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 200;
+    text-align: center;
+}
+
+.rojo {
+    background-color: var(--mensaje-usuario-rojo);
+    border: 1px solid white;
+    width: 400px;
+    margin: 20px auto;
+    padding: 15px;
+    border-radius: 10px;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 200;
+    text-align: center;
+}
+
+.amarillo {
+    background-color: var(--mensaje-usuario-amarillo);
+    border: 1px solid white;
+    width: 400px;
+    margin: 20px auto;
+    padding: 15px;
+    border-radius: 10px;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 200;
+    text-align: center;
+}
+
+.tarjetas {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+.tarjeta {
+    border-radius: 25px;
+    border: 1px var(--borde-Grilla) solid;
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+    flex: 1;
+    margin-right: 10px;
+    justify-content: center;
+}
+
+.tarjeta > h3 {
+    text-align: center;
+}
+
+.tarjeta > svg {
+    height: 200px;
+    /* margin-bottom: 160px; */
+    margin-left: 65px;
+}
+
+/*barra de progreso*/
+.progress {
+    height: 35px;
+    width: 100%;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+.progress-bar {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    transition: width 0.25s;
+    border-radius: 5px;
+}
+.progress-bar-text {
+    margin-left: 10px;
+    font-weight: bold;
+    color: var(--textos);
+    font-size: 9px;
+}
