@@ -50,6 +50,8 @@
     height: 30px;
     color: rgba(255, 255, 255, 0.897);
     border: 1px solid white;
+    margin-top: 25px;
+    margin-right: 600px;
 }
 
 .container>button:hover {
@@ -188,8 +190,21 @@ select {
     text-align: center;
 }
 
-.activeGenerales {
-    background-color: var(--celeste);
+.activePaso > a , .activeGenerales > a {
+    display: flex;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 20px;
+    text-decoration: none;
+    align-items: center;
+    width: 130px;
+    justify-content: center;
+    text-align: center;
+    margin-bottom: 2px;
+}
+
+.activePaso {
+    background-color: var(--magenta);
     font-size: 12px;
     text-align: center;
     padding: 5px;
@@ -199,14 +214,9 @@ select {
     height: 20px;
     padding-top: 10px;
     color: rgba(255, 255, 255, 0.897);
+   
+    
 }
-
-.activeGenerales > a {
-    text-decoration: none;
-    color: white;
-    width: 130px;
-}
-
 
 .inicio {
     background-color: var(--gris-claro);

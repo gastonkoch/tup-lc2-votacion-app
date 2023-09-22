@@ -151,3 +151,134 @@
     font-weight: 200;
     text-align: center;
 }
+
+#sec-titulo{
+    position: relative;
+    left: 375px;
+}
+
+.grillacenter {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+
+.grilla {
+    display: grid;
+    grid-template-columns: 300px 300px 600px 450px;
+    grid-template-rows: auto 300px;
+    border-radius: 15px;
+    border: 1px var(--borde-Grilla) solid;
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+    background-color: rgb(243, 241, 241);
+}
+
+.c1, .c2, .c3, .c4 {
+    font-weight: bold;
+    text-align: center;
+    text-transform: uppercase;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-bottom: 3px var(--borde-Grilla) solid;
+    padding-bottom: 10px;
+}
+
+.c6 > h2{
+    display: flex;
+    justify-content: center;
+    font-size: 18px;
+}
+
+.c6 > h2,p{
+    margin-left: 10px;
+    margin-right: 5px;
+}
+
+.c6 > p {
+    display: flex;
+    justify-content: center;
+    font-size: 14px;
+    font-family: 'Roboto' sans-serif;
+    color: var(--celeste);
+}
+
+
+.c7 {
+    display: flex;
+    
+}
+
+
+.mesas {
+    background-color: var(--celeste);
+    border-radius: 5px;
+    padding: 5px;
+    align-items: flex-start;
+    display: flex;
+    width: 200px;
+    margin: 10px 10px auto;
+    height: 100px;
+}
+
+
+.electores {
+    background-color: var(--magenta);
+    border-radius: 5px;
+    padding: 5px;
+    align-items: flex-start;
+    display: flex;
+    width: 200px;
+    height: 100px;
+    margin: 10px 10px auto;
+}
+
+.participacion {
+    background-color: var(--morado);
+    border-radius: 5px;
+    padding: 5px;
+    align-items: flex-start;
+    display: flex;
+    width: 250px;
+    margin: 10px 10px auto;
+    height: 100px;
+}
+
+.mesas >h4,
+p {
+    color: white;
+}
+
+.participacion>h4,
+p {
+    color: white;
+}
+
+.electores>h4,
+p {
+    color: white;
+}
+
+.partidoscenter {
+    display: flex;
+    justify-content: space-between;
+}
+
+.leftgrilla {
+    margin-left: 10px;
+}
+
+.rigthgrilla {
+    margin-right: 10px;
+}
+
+.leftgrilla > p {
+    color: black;
+    font-weight: bold;
+    line-height: 40px;
+}
+
+.rigthgrilla > p{
+    color: black;
+    line-height: 22px
+}
