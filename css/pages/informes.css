@@ -154,24 +154,26 @@
 
 #sec-titulo{
     position: relative;
-    left: 375px;
+    left: 175px;
 }
 
 .grillacenter {
     display: flex;
     justify-content: center;
-    margin-bottom: 20px;
+    margin-bottom: 100px;
+    margin-right: 100px;
 }
 
 
 .grilla {
     display: grid;
-    grid-template-columns: 300px 300px 600px 450px;
+    grid-template-columns: 225px 150px 425px 150px;
     grid-template-rows: auto 300px;
     border-radius: 15px;
     border: 1px var(--borde-Grilla) solid;
     box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
     background-color: rgb(243, 241, 241);
+    /* margin-right: 50px; */
 }
 
 .c1, .c2, .c3, .c4 {
@@ -184,10 +186,30 @@
     padding-bottom: 10px;
 }
 
+.c5 {
+    display: flex;
+    justify-content: center;
+}
+
+
+.c5 > svg{
+    left: 10px;
+    width: 225px;
+    height: 180px;
+}
+
+.c5 > svg > .leaflet-interactive {
+    position: relative;
+    left: 1px;
+}
+
+
+
+
 .c6 > h2{
     display: flex;
     justify-content: center;
-    font-size: 18px;
+    font-size: 13px;
 }
 
 .c6 > h2,p{
@@ -198,7 +220,7 @@
 .c6 > p {
     display: flex;
     justify-content: center;
-    font-size: 14px;
+    font-size: 10px;
     font-family: 'Roboto' sans-serif;
     color: var(--celeste);
 }
@@ -216,9 +238,9 @@
     padding: 5px;
     align-items: flex-start;
     display: flex;
-    width: 200px;
+    max-width: 125px;
     margin: 10px 10px auto;
-    height: 100px;
+    height: 70px;
 }
 
 
@@ -228,8 +250,8 @@
     padding: 5px;
     align-items: flex-start;
     display: flex;
-    width: 200px;
-    height: 100px;
+    max-width: 125px;
+    height: 70px;
     margin: 10px 10px auto;
 }
 
@@ -239,24 +261,27 @@
     padding: 5px;
     align-items: flex-start;
     display: flex;
-    width: 250px;
+    max-width: 125px;
     margin: 10px 10px auto;
-    height: 100px;
+    height: 70px;
 }
 
 .mesas >h4,
 p {
     color: white;
+    font-size: 12px;
 }
 
 .participacion>h4,
 p {
     color: white;
+    font-size: 12px;
 }
 
 .electores>h4,
 p {
     color: white;
+    font-size: 12px;
 }
 
 .partidoscenter {
@@ -265,7 +290,7 @@ p {
 }
 
 .leftgrilla {
-    margin-left: 10px;
+    margin-left: 3px;
 }
 
 .rigthgrilla {
@@ -276,9 +301,11 @@ p {
     color: black;
     font-weight: bold;
     line-height: 40px;
+    font-size: 10px;
 }
 
 .rigthgrilla > p{
     color: black;
-    line-height: 22px
+    line-height: 22px;
+    font-size: 10px;
 }

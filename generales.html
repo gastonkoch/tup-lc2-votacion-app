@@ -10,6 +10,8 @@
     <!-- Estilos CSS -->
     <link rel="stylesheet" href="css/common.css" />
     <link rel="stylesheet" href="css/pages/generales.css">
+    <script src="js/common.js" defer></script>
+    <script src="js/pages/general.js" defer></script>
 
 </head>
 
@@ -27,50 +29,20 @@
                     <div class="left">
                         <li>
                             <label for="year">Año</label>
-                            <select name="año" id="year" name="year">
-                                <!-- <option value="1">2023</option>
-                                <option value="2">2022</option>
-                                <option value="3">2021</option>
-                                <option value="4">2020</option> -->
+                            <select name="año" id="year" name="year" onchange="cargarCargos()"> 
+                                <option value="vacio">--Seleccione--</option>
                             </select>
                         </li>
                         <li>
                             <label for="cargo">Cargo</label>
-                            <select name="cargo" id="cargo">
-                                <!-- <option value="1">Presidente</option>
-                                <option value="2">Vicepresidente</option>
-                                <option value="3">Diputado</option>
-                                <option value="4">Senador</option> -->
+                            <select name="cargo" id="cargo" onchange="cargarDistritos()">
+                                <option value="vacio">--Seleccione--</option>
                             </select>
-
                         </li>
                         <li>
-                            <label for="provincias">Distrito</label>
-                            <select id="provincias" name="provincias">
-                                <!-- <option value="1">Buenos Aires</option>
-                                <option value="2">Ciudad Autónoma de Buenos Aires</option>
-                                <option value="3">Catamarca</option>
-                                <option value="4">Chaco</option>
-                                <option value="5">Chubut</option>
-                                <option value="6">Córdoba</option>
-                                <option value="7">Corrientes</option>
-                                <option value="8">Entre Ríos</option>
-                                <option value="9">Formosa</option>
-                                <option value="10">Jujuy</option>http://127.0.0.1:5500/paso.html
-                                <option value="11">La Pampa</option>
-                                <option value="12">La Rioja</option>
-                                <option value="13">Mendoza</option>
-                                <option value="14">Misiones</option>
-                                <option value="15">Neuquén</option>
-                                <option value="16">Río Negro</option>
-                                <option value="17">Salta</option>
-                                <option value="18">San Juan</option>
-                                <option value="19">San Luis</option>
-                                <option value="20">Santa Cruz</option>
-                                <option value="21">Santa Fe</option>
-                                <option value="22">Santiago del Estero</option>
-                                <option value="23">Tierra del Fuego, Antártida e Islas del Atlántico Sur</option>
-                                <option value="24">Tucumán</option> -->
+                            <label for="distritos">Distrito</label>
+                            <select id="distritos" name="distritos">
+                                <option value="vacio">--Seleccione--</option>
                             </select>
                         </li>
 
@@ -93,6 +65,17 @@
     </header>
     <!-- Contenido principal de la página -->
     <main>
+        <section class="sec-messages">
+            <div class="verde">
+                <p><i class="fa-thumbs-up fas fa-thumbs-up fa-lg"></i> Se agrego con éxito el resultado al informe</p>
+            </div>
+            <div class="rojo">
+                <p><i class="fas fa-exclamation-triangle fas fa-thumbs-up fa-lg"></i> Error: Se produjo un error al intentar agregar resultados al informe</p>
+            </div>
+            <div class="amarillo">
+                <p><i class="fa fa-exclamation"></i> La operacion no se puede completar</p>
+            </div>
+        </section>
         <section id="sec-titulo">
             <!--Seccion para agregar una palicula favorita por codigo-->
             <div class="elecciones">
@@ -301,6 +284,7 @@
                 </div>
 
             </div>
+
             <div class="tarjetas">
 
                 <div class="tarjeta">
@@ -397,17 +381,7 @@
                 </div>
             </div>
         </section>
-        <section class="sec-messages">
-            <div class="verde">
-                <p><i class="fa-thumbs-up"></i> Se agrego con éxito el resultado al informe</p>
-            </div>
-            <div class="rojo">
-                <p><i class="fas fa-exclamation-triangle"></i> Error: Se produjo un error al intentar agregar resultados al informe</p>
-            </div>
-            <div class="amarillo">
-                <p><i class="fa fa-exclamation"></i> La operacion no se puede completar</p>
-            </div>
-        </section>
+        
         </section>
     </main>
     <!--Pie de página-->
