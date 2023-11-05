@@ -272,6 +272,7 @@ label {
     font-size: 12px;
     font-weight: 200;
     text-align: center;
+    display: block;
 }
 
 .rojo {
@@ -285,6 +286,7 @@ label {
     font-size: 12px;
     font-weight: 200;
     text-align: center;
+    display: block;
 }
 
 .amarillo {
@@ -298,6 +300,7 @@ label {
     font-size: 12px;
     font-weight: 200;
     text-align: center;
+    display: block;
 }
 
 .tarjetas {
