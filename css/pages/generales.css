@@ -492,3 +492,7 @@ svg>path {
     left: 25px;
     bottom: 36px;
 }
+
+.filtrar > svg {
+    fill: black;
+}

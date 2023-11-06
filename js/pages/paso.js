@@ -36,6 +36,12 @@ function cargarCargos() {
             distritoFiltro.remove(i);
         }
     }
+    const seccionFiltro = document.getElementById('seccion_filtro');
+    for (var i = seccionFiltro.options.length - 1; i >= 0; i--) {
+        if (seccionFiltro.options[i].value !== "vacio") {
+            seccionFiltro.remove(i);
+        }
+    }
     fetch("https://resultados.mininterior.gob.ar/api/menu?año=" + anios.value)
         .then(response => {
             // Si no es exitoso retorno el error
@@ -61,12 +67,17 @@ function cargarCargos() {
 }
 
 function cargarDistritos() {
-    
     const distritoFiltro = document.getElementById('distritos');
     const cargoFiltro = document.getElementById('cargo');
     for (var i = distritoFiltro.options.length - 1; i >= 0; i--) {
         if (distritoFiltro.options[i].value !== "vacio") {
             distritoFiltro.remove(i);
+        }
+    }
+    const seccionFiltro = document.getElementById('seccion_filtro');
+    for (var i = seccionFiltro.options.length - 1; i >= 0; i--) {
+        if (seccionFiltro.options[i].value !== "vacio") {
+            seccionFiltro.remove(i);
         }
     }
     fetch("https://resultados.mininterior.gob.ar/api/menu?año=" + anios.value)
@@ -96,7 +107,7 @@ function cargarDistritos() {
 
 function cargarSeccion() {
     const cargoFiltro = document.getElementById('cargo');
-    const distritoFiltro = document.getElementById('distrito');
+    const distritoFiltro = document.getElementById('distritos');
     const seccionFiltro = document.getElementById('seccion_filtro');
     for (var i = seccionFiltro.options.length - 1; i >= 0; i--) {
         if (seccionFiltro.options[i].value !== "vacio") {
@@ -118,12 +129,10 @@ function cargarSeccion() {
                 eleccion.Cargos.forEach((cargo) => {
                     if (cargo.IdCargo === cargoFiltro.value) {
                         cargo.Distritos.forEach((itemDistrito) => {
-                            if (itemDistrito.IdDistrito === distritoFiltro.value) {
+                            if (itemDistrito.IdDistrito == distritoFiltro.value) {
                                 itemDistrito.SeccionesProvinciales.forEach((seccionesProvinciales) => {
-                                    console.log("AAAAAAAAAAA")
                                     document.getElementById('hdSeccionProvincial').innerHTML = seccionesProvinciales.IDSeccionProvincial
                                     seccionesProvinciales.Secciones.forEach((Secciones) => {
-                                        console.log("entra")
                                         const nuevaOpcion = new Option(Secciones.Seccion, Secciones.IdSeccion);
                                         seccionFiltro.appendChild(nuevaOpcion);
                                     })
@@ -160,3 +169,7 @@ function muestra_oculta(elementId) {
       }
     }
   }
+
+function filtrar(){
+    alert("hola")
+}
