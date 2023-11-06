@@ -257,7 +257,7 @@ label {
 .verde {
     background-color: var(--mensaje-usuario-verde);
     border: 1px solid white;
-    width: 400px;
+    width: 500px;
     margin: 20px auto;
     padding: 15px;
     border-radius: 10px;
@@ -265,13 +265,12 @@ label {
     font-size: 12px;
     font-weight: 200;
     text-align: center;
-    display: block;
 }
 
 .rojo {
     background-color: var(--mensaje-usuario-rojo);
     border: 1px solid white;
-    width: 400px;
+    width: 500px;
     margin: 20px auto;
     padding: 15px;
     border-radius: 10px;
@@ -279,13 +278,12 @@ label {
     font-size: 12px;
     font-weight: 200;
     text-align: center;
-    display: block;
 }
 
 .amarillo {
     background-color: var(--mensaje-usuario-amarillo);
     border: 1px solid white;
-    width: 400px;
+    width: 500px;
     margin: 20px auto;
     padding: 15px;
     border-radius: 10px;
@@ -293,7 +291,6 @@ label {
     font-size: 12px;
     font-weight: 200;
     text-align: center;
-    display: block;
 }
 
 .tarjetas {
