@@ -170,6 +170,3 @@ function muestra_oculta(elementId) {
     }
   }
 
-function filtrar(){
-    alert("hola")
-}

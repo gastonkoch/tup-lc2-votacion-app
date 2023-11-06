@@ -486,6 +486,23 @@ svg>path {
     bottom: 36px;
 }
 
-.filtrar > svg {
+.filtrar > button  {
+    border: none;
+    background-color: white;
+    display: flex;
+    position: relative;
+}
+
+.filtrar > button > p {
+    font-family: 'Roboto', sans-serif;
+    text-transform: uppercase;
+    color: var(--textos);
+    font-size: 10px;
+    margin-left: 5px;
+    width: 130px;
+    text-align: center;
+}
+
+.filtrar > button > svg {
     fill: black;
 }
