@@ -86,7 +86,6 @@ function cargarDistritos() {
     }
     const jsonCadena = localStorage.getItem('datosFiltros');
     const jsonObjeto = JSON.parse(jsonCadena);
-    console.log(jsonObjeto)
     jsonObjeto.forEach((eleccion) => {
         if (eleccion.IdEleccion == tipoEleccion) {
             eleccion.Cargos.forEach((cargo) => {
@@ -113,9 +112,10 @@ function cargarSeccion() {
     }
     const jsonCadena = localStorage.getItem('datosFiltros');
     const jsonObjeto = JSON.parse(jsonCadena);
-    console.log(jsonObjeto)
     jsonObjeto.forEach((eleccion) => {
         if (eleccion.IdEleccion == tipoEleccion) {
+            let tipoRecuento = eleccion.Recuento;
+            localStorage.setItem('tipoRecuento', tipoRecuento);
             eleccion.Cargos.forEach((cargo) => {
                 if (cargo.IdCargo === cargoFiltro.value) {
                     cargo.Distritos.forEach((itemDistrito) => {
@@ -203,6 +203,43 @@ function filtrar() {
         document.getElementById('mensaje_amarrillo').innerHTML = mensaje_amarillo
         muestra_oculta('amarillo')
     } else {
-        // codigo a desarrollar
+
+        let anioEleccion = anios.value
+        let tipoRecuento = 1;//localStorage.getItem('tipoRecuento'); 
+        let categoriaId = 2;
+        let distritoId = distritoFiltro.value;
+        let seccionProvincialId = document.getElementById('hdSeccionProvincial').value;
+        let seccionId = seccionFiltro.value;
+        let circuitoId = '';
+        let mesaId = '';
+
+        let url = "https://resultados.mininterior.gob.ar/api/resultados/getResultados"
+        let parametros =`?anioEleccion=${anioEleccion}&tipoRecuento=${tipoRecuento}&tipoEleccion=${tipoEleccion}&categoriaId=${categoriaId}&distritoId=${distritoId}&seccionProvincialId=${seccionProvincialId}&seccionId=${seccionId}&circuitoId=${circuitoId}&mesaId=${mesaId}`  
+        console.log(url + parametros)
+        fetch(url + parametros)
+        .then(response => {
+            // Si no es exitoso retorno el error
+            if (response.status === 200) {
+                console.log("status")
+                return response.json();
+            } else {
+                let mensaje_rojo = "Hubo un error en la comunicación con el servidor, por favor contactese con soporte"
+                document.getElementById('mensaje_rojo').innerHTML = mensaje_rojo
+                muestra_oculta('rojo')
+            }
+        })
+        .then(datosApi => {
+            console.log("API")
+            console.log(datosApi)
+            // Aca no entra porque directamente no anda la api
+            
+            let divElecciones = document.getElementById('elecciones_div')
+            divElecciones.display = 'flex'
+            // poner display y cambiar los titulos
+            
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
     }
 }

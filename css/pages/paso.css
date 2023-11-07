@@ -252,6 +252,7 @@ label {
 .elecciones {
     position: relative;
     left: 185px;
+    display: none;
 }
 
 .verde {
