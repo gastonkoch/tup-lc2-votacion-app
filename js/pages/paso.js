@@ -20,6 +20,8 @@ fetch("https://resultados.mininterior.gob.ar/api/menu/periodos")
         console.error('Error:', error);
     });
 
+let divElecciones = document.getElementById('elecciones_div')
+divElecciones.display = 'None'
 muestra_oculta('verde')
 muestra_oculta('rojo')
 muestra_oculta('amarillo')
@@ -220,7 +222,6 @@ function filtrar() {
         .then(response => {
             // Si no es exitoso retorno el error
             if (response.status === 200) {
-                console.log("status")
                 return response.json();
             } else {
                 let mensaje_rojo = "Hubo un error en la comunicación con el servidor, por favor contactese con soporte"
@@ -229,12 +230,14 @@ function filtrar() {
             }
         })
         .then(datosApi => {
-            console.log("API")
+
             console.log(datosApi)
             // Aca no entra porque directamente no anda la api
             
             let divElecciones = document.getElementById('elecciones_div')
-            divElecciones.display = 'flex'
+            divElecciones.display = 'block'
+            document.getElementById('titulo_elecciones').innerHTML = `Elecciones ${anioEleccion} | PASO`
+            console.log(divElecciones.display)
             // poner display y cambiar los titulos
             
         })
