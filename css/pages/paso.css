@@ -32,11 +32,7 @@
     --mensaje-usuario-rojo: #dc3545;
 }
 
-.container {
-    display: flex;
-    justify-content: center;
-    height: 130px;
-}
+
 
 .container>button {
     background-color: var(--gris-claro);
@@ -293,12 +289,6 @@ label {
     text-align: center;
 }
 
-.tarjetas {
-    display: flex;
-    width: 100%;
-    justify-content: center;
-    margin-bottom: 100px;
-}
 
 .tarjeta {
     border-radius: 25px;
@@ -502,4 +492,30 @@ svg>path {
 
 .filtrar > button > svg {
     fill: black;
+}
+
+/* #elecciones_div {
+    display: none;
+} */
+
+/* .container {
+    display: flex;
+    justify-content: center;
+    height: 130px;
+} */
+
+
+/* .tarjetas {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    margin-bottom: 100px;
+} */
+
+.container {
+    display: none;
+}
+
+.tarjetas {
+    display: none;
 }

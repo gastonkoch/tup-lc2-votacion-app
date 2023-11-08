@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="css/common.css" />
     <link rel="stylesheet" href="css/pages/paso.css">
     <script src="js/common.js" defer></script>
+    <script src="js/pages/mapas.js" defer></script>
     <script src="js/pages/paso.js" defer></script>
 </head>
 
@@ -27,29 +28,29 @@
             <ul>
                 <div class="left">
                     <li>
-                        <label for="year">Año</label>
+                        <!-- <label for="year">Año</label> -->
                         <select name="año" id="year" name="year" onchange="cargarCargos()"> 
-                            <option value="vacio">--Seleccione--</option>
+                            <option value="vacio">Año</option>
                         </select>
                     </li>
                     <li>
-                        <label for="cargo">Cargo</label>
+                        <!-- <label for="cargo">Cargo</label> -->
                         <select name="cargo" id="cargo" onchange="cargarDistritos()">
-                            <option value="vacio">--Seleccione--</option>
+                            <option value="vacio">Cargo</option>
                         </select>
 
                     </li>
                     <li>
-                        <label for="distritos">Distrito</label>
+                        <!-- <label for="distritos">Distrito</label> -->
                         <select id="distritos" name="distritos" onchange="cargarSeccion()">
-                            <option value="vacio">--Seleccione--</option>
+                            <option value="vacio">Distrito</option>
                         </select>
                     </li>
                     <input type="hidden" id="hdSeccionProvincial" name="hdSeccionProvincial">
                     <li>
-                        <label for="seccion_filtro">Sección</label>
+                        <!-- <label for="seccion_filtro">Sección</label> -->
                         <select id="seccion_filtro" name="seccion_filtro" onchange="guardarSeccion()">
-                            <option value="vacio">--Seleccione--</option>
+                            <option value="vacio">Sección</option>
                         </select>
                     </li>
                     <li class="filtrar"><button onclick="filtrar()"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="width: 12px">
@@ -85,8 +86,8 @@
         <section id="sec-titulo">
             <!--Seccion para agregar una palicula favorita por codigo-->
             <div class="elecciones" id="elecciones_div">
-                <h2 id="titulo_elecciones">Elecciones 2023 | Paso</h2>
-                <p class="texto-path" id="subtitulo_elecciones">2020 > Paso > Provisorio > Senadores Nacionales > Buenos Aires</p>
+                <h2 id="titulo_elecciones">Elecciones | Paso</h2>
+                <p class="texto-path" id="subtitulo_elecciones"></p>
             </div>
 
             <div class="container">
@@ -138,7 +139,7 @@
                     </svg>
                     <div class="texto-tarjetas">
                         <h4>Mesas computadas</h4>
-                        <p>62.71%</p>
+                        <p id="mesaComputada"></p>
                     </div>
                 </div>
                 <div class="electores">
@@ -226,7 +227,7 @@
                     </svg>
                     <div class="texto-tarjetas">
                         <h4>Electores</h4>
-                        <p>62.71%</p>
+                        <p id="electores"></p>
                     </div>
                 </div>
                 <div class="participacion">
@@ -285,7 +286,7 @@
                     <div class="texto-tarjetas">
                         <h4>Participación sobre</h4>
                         <h4>escrutado</h4>
-                        <p>62.71%</p>
+                        <p id="participacionSobreEscrutado"></p>
                     </div>
                 </div>
             </div>
@@ -347,9 +348,9 @@
                 </div>
 
                 <div class="tarjeta">
-                    <h3>Buenos Aires</h3>
+                    <h3 id="provinciaSeleccionada">Buenos Aires</h3>
                     <div class="provincia">
-                        <svg>
+                        <svg id="provinciaSeleccionadaImagen">
                             <path class="leaflet-interactive" stroke="#18a0fb" stroke-opacity="1" stroke-width="2"
                                 stroke-linecap="round" stroke-linejoin="round" fill="#18a0fb" fill-opacity="1"
                                 fill-rule="evenodd"
@@ -402,6 +403,9 @@
         </section>
     </main>
     <!--Pie de página-->
+    <div id="blanco">
+
+    </div>
     <footer>
         <div class="foot">
             <div class="footer_imagen">
