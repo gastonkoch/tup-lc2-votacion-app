@@ -351,7 +351,7 @@ function filtrar() {
 
 
 
-        // console.log(url + parametros)
+        console.log(url + parametros)
 
         fetch(url + parametros)
         .then(response => {
@@ -366,6 +366,15 @@ function filtrar() {
         })
         .then(datosApi => {
 
+            const estadoRecuento = datosApi.estadoRecuento;
+
+            console.log(`Mesas Totalizadas: ${estadoRecuento.mesasTotalizadas}`);
+            console.log(`Cantidad de Electores: ${estadoRecuento.cantidadElectores}`);
+            console.log(`Participación Porcentaje: ${estadoRecuento.participacionPorcentaje}`);
+
+            document.getElementById('mesaComputada').innerHTML = estadoRecuento.mesasTotalizadas
+            document.getElementById('electores').innerHTML = estadoRecuento.cantidadElectores
+            document.getElementById('participacionSobreEscrutado').innerHTML = estadoRecuento.participacionPorcentaje + " %"
             // console.log(datosApi)
 
             // Aca no entra porque directamente no anda la api
@@ -389,24 +398,15 @@ function filtrar() {
             divFooter.style.margin = "0 20px";
 
 
+
             let tituloElecciones = document.getElementById('subtitulo_elecciones')
             tituloElecciones.display = 'block'
             document.getElementById('subtitulo_elecciones').innerHTML = `${anioEleccion} > PASO>${localStorage.getItem('cargo_seleccionado')} > ${localStorage.getItem('distrito_seleccionado')} > ${localStorage.getItem('seccion_seleccionado')}`
 
-            document.getElementById('mesaComputada').innerHTML
-            document.getElementById('electores').innerHTML
-            document.getElementById('provinciaSeleccionada').innerHTML
+            
 
             for (let i = 0; i < mapas.length; i++) {
                 const provincia = mapas[i].provincia;
-                // const svg = mapas[i].svg;
-            
-                // Aquí puedes realizar cualquier acción que desees con los datos de la provincia
-                // console.log(`Provincia: ${provincia}`);
-                // Por ejemplo, podrías mostrar el SVG o realizar otras operaciones específicas.
-            
-                // Para acceder al SVG en el formato de cadena, puedes utilizar la variable svg.
-                // console.log("SVG:", svg);
                 if(localStorage.getItem('distrito_seleccionado') == provincia){
                     document.getElementById('provinciaSeleccionada').innerHTML = mapas[i].provincia;
                     document.getElementById('provinciaSeleccionadaImagen').innerHTML = mapas[i].svg;    
