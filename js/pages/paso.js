@@ -92,6 +92,7 @@ function cargarDistritos() {
         if (eleccion.IdEleccion == tipoEleccion) {
             eleccion.Cargos.forEach((cargo) => {
                 if (cargo.IdCargo === cargoFiltro.value) {
+                    localStorage.setItem('cargo_seleccionado', cargo.Cargo);
                     cargo.Distritos.forEach((itemDistrito) => {
                         const nuevaOpcion = new Option(itemDistrito.Distrito, itemDistrito.IdDistrito);
                         distritoFiltro.appendChild(nuevaOpcion);
@@ -103,7 +104,6 @@ function cargarDistritos() {
 }
 
 function cargarSeccion() {
-    const anios = document.getElementById('year')
     const cargoFiltro = document.getElementById('cargo');
     const distritoFiltro = document.getElementById('distritos');
     const seccionFiltro = document.getElementById('seccion_filtro');
@@ -120,8 +120,9 @@ function cargarSeccion() {
             localStorage.setItem('tipoRecuento', tipoRecuento);
             eleccion.Cargos.forEach((cargo) => {
                 if (cargo.IdCargo === cargoFiltro.value) {
-                    cargo.Distritos.forEach((itemDistrito) => {
+                    cargo.Distritos.forEach((itemDistrito) => {    
                         if (itemDistrito.IdDistrito == distritoFiltro.value) {
+                            localStorage.setItem('distrito_seleccionado', itemDistrito.Distrito);
                             itemDistrito.SeccionesProvinciales.forEach((seccionesProvinciales) => {
                                 document.getElementById('hdSeccionProvincial').innerHTML = seccionesProvinciales.IDSeccionProvincial
                                 seccionesProvinciales.Secciones.forEach((Secciones) => {
@@ -137,6 +138,34 @@ function cargarSeccion() {
     });
 }
 
+function guardarSeccion(){
+    const cargoFiltro = document.getElementById('cargo');
+    const distritoFiltro = document.getElementById('distritos');
+    const seccionFiltro = document.getElementById('seccion_filtro');
+    const jsonCadena = localStorage.getItem('datosFiltros');
+    const jsonObjeto = JSON.parse(jsonCadena);
+    jsonObjeto.forEach((eleccion) => {
+        if (eleccion.IdEleccion == tipoEleccion) {
+            let tipoRecuento = eleccion.Recuento;
+            eleccion.Cargos.forEach((cargo) => {
+                if (cargo.IdCargo === cargoFiltro.value) {
+                    cargo.Distritos.forEach((itemDistrito) => {    
+                        if (itemDistrito.IdDistrito == distritoFiltro.value) {
+                            itemDistrito.SeccionesProvinciales.forEach((seccionesProvinciales) => {
+                                document.getElementById('hdSeccionProvincial').innerHTML = seccionesProvinciales.IDSeccionProvincial
+                                seccionesProvinciales.Secciones.forEach((Secciones) => {
+                                    if (Secciones.IdSeccion == seccionFiltro.value){
+                                        localStorage.setItem('seccion_seleccionado', Secciones.Seccion);
+                                    }
+                                })
+                            })
+                        }
+                    })
+                }
+            })
+        }
+    });
+}
 
 function muestra_oculta(elementId) {
     switch (elementId) {
@@ -237,9 +266,12 @@ function filtrar() {
             let divElecciones = document.getElementById('elecciones_div')
             divElecciones.display = 'block'
             document.getElementById('titulo_elecciones').innerHTML = `Elecciones ${anioEleccion} | PASO`
-            console.log(divElecciones.display)
             // poner display y cambiar los titulos
             
+            let tituloElecciones = document.getElementById('subtitulo_elecciones')
+            tituloElecciones.display = 'block'
+            document.getElementById('subtitulo_elecciones').innerHTML = `${anioEleccion} > PASO>${localStorage.getItem('cargo_seleccionado')} > ${localStorage.getItem('cargo_seleccionado')} > ${localStorage.getItem('seccion_seleccionado')}`
+
         })
         .catch(error => {
             console.error('Error:', error);
