@@ -32,11 +32,6 @@
     --mensaje-usuario-rojo: #dc3545;
 }
 
-.container {
-    display: flex;
-    justify-content: center;
-    height: 130px;
-}
 
 .container>button {
     background-color: var(--gris-claro);
@@ -190,7 +185,8 @@ select {
     text-align: center;
 }
 
-.activePaso > a , .activeGenerales > a {
+.activePaso>a,
+.activeGenerales>a {
     display: flex;
     color: white;
     padding: 5px 10px;
@@ -214,8 +210,8 @@ select {
     height: 20px;
     padding-top: 10px;
     color: rgba(255, 255, 255, 0.897);
-   
-    
+
+
 }
 
 .inicio {
@@ -264,7 +260,7 @@ label {
 .verde {
     background-color: var(--mensaje-usuario-verde);
     border: 1px solid white;
-    width: 400px;
+    width: 500px;
     margin: 20px auto;
     padding: 15px;
     border-radius: 10px;
@@ -272,13 +268,12 @@ label {
     font-size: 12px;
     font-weight: 200;
     text-align: center;
-    display: block;
 }
 
 .rojo {
     background-color: var(--mensaje-usuario-rojo);
     border: 1px solid white;
-    width: 400px;
+    width: 500px;
     margin: 20px auto;
     padding: 15px;
     border-radius: 10px;
@@ -286,13 +281,12 @@ label {
     font-size: 12px;
     font-weight: 200;
     text-align: center;
-    display: block;
 }
 
 .amarillo {
     background-color: var(--mensaje-usuario-amarillo);
     border: 1px solid white;
-    width: 400px;
+    width: 500px;
     margin: 20px auto;
     padding: 15px;
     border-radius: 10px;
@@ -300,15 +294,8 @@ label {
     font-size: 12px;
     font-weight: 200;
     text-align: center;
-    display: block;
 }
 
-.tarjetas {
-    display: flex;
-    width: 100%;
-    justify-content: center;
-    margin-bottom: 100px;
-}
 
 .tarjeta {
     border-radius: 25px;
@@ -493,14 +480,14 @@ svg>path {
     bottom: 36px;
 }
 
-.filtrar > button  {
+.filtrar>button {
     border: none;
     background-color: white;
     display: flex;
     position: relative;
 }
 
-.filtrar > button > p {
+.filtrar>button>p {
     font-family: 'Roboto', sans-serif;
     text-transform: uppercase;
     color: var(--textos);
@@ -510,6 +497,28 @@ svg>path {
     text-align: center;
 }
 
-.filtrar > button > svg {
+.filtrar>button>svg {
     fill: black;
+}
+
+/* #elecciones_div {
+    display: none;
+} */
+/* .container {
+    display: flex;
+    justify-content: center;
+    height: 130px;
+} */
+/* .tarjetas {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    margin-bottom: 100px;
+} */
+.container {
+    display: none;
+}
+
+.tarjetas {
+    display: none;
 }
