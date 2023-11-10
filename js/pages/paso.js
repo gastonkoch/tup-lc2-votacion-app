@@ -328,33 +328,126 @@ function filtrar() {
                         provinciadiv.style.display = 'flex';
                         provinciadiv.style.justifyContent = 'center';
                     }
-                    datosApi.valoresTotalizadosPositivos.forEach((agrupaciones) => {
-                        console.log(agrupaciones.nombreAgrupacion)
-                        const grilla = `
-                        <h4 id="agrupacionNombre">${agrupaciones.nombreAgrupacion}</h4>
-                        `;
 
-                        agrupaciones.listas.forEach((lista) => {
-                            const itemGrilla = `
-                            <div class="partidopolitico">
-                            <div class="partidopoliticoleft">
-                                <p><b>${lista.nombre}</b></p>
-                            </div>
-                            <div class="partidopoliticoright">
-                                <p>${(lista.votos * 100 / agrupaciones.votos)}%</p>
-                            </div>
-                        </div>
-                        <h5> ${lista.votos} VOTOS</h5>
-                        <div class="progress" style="background: var(--grafica-amarillo-claro);">
-                            <div class="progress-bar" style="width:73%; background: var(--grafica-amarillo);">
-                                <span class="progress-bar-text">73%</span>
-                            </div>
-                        </div>
-                        </div>
+                    let coloresBarra = {
+                        '0008': ['rgb(255, 213, 0)', 'rgba(255, 213, 4, 0.3)'],
+                        '0022': ['rgb(0, 169, 232)', 'rgba(0, 169, 232, 0.3)'],
+                        // SOLO HAY QUE AGREGAR COLORES Y ESTO YA ESTA, SACA LOS QUE PUEDAS DE LAS VARIABLES GLOBALES DEL CSS
+                        '0259': ['rgb(0, 169, 232)', 'rgba(0, 169, 232, 0.3)'],
+                        '0268': ['rgb(0, 169, 232)', 'rgba(0, 169, 232, 0.3)'],
+                        '0298': ['rgb(0, 169, 232)', 'rgba(0, 169, 232, 0.3)'],
+                        '0309': ['rgb(0, 169, 232)', 'rgba(0, 169, 232, 0.3)'],
+                        '0503': ['rgb(0, 169, 232)', 'rgba(0, 169, 232, 0.3)'],
+                        '0511': ['rgb(0, 169, 232)', 'rgba(0, 169, 232, 0.3)'],
+                        '0518': ['rgb(0, 169, 232)', 'rgba(0, 169, 232, 0.3)'],
+                        '0526': ['rgb(0, 169, 232)', 'rgba(0, 169, 232, 0.3)'],
+                        '0546': ['rgb(0, 169, 232)', 'rgba(0, 169, 232, 0.3)'],
+                        '0552': ['rgb(0, 169, 232)', 'rgba(0, 169, 232, 0.3)'],
+                        '0561': ['rgb(0, 169, 232)', 'rgba(0, 169, 232, 0.3)'],
+                        '0567': ['rgb(0, 169, 232)', 'rgba(0, 169, 232, 0.3)'],
+                        '0574': ['rgb(0, 169, 232)', 'rgba(0, 169, 232, 0.3)']
+                    }
+
+
+
+                    datosApi.valoresTotalizadosPositivos.forEach((agrupaciones) => {
+                        console.log(agrupaciones.idAgrupacion)
+                        const grilla = `
+                            <h4 id="agrupacionNombre">${agrupaciones.nombreAgrupacion}</h4>
                         `;
-                        })
-                        tarjeta.innerHTML += itemGrilla;
-                    })
+                        document.getElementById('agrupaciones_politicas').innerHTML += grilla;
+                        let primerColor;
+                        let segundoColor;
+                        // Mover el bloque if fuera del bucle de listas
+                        console.log(coloresBarra.hasOwnProperty(agrupaciones.idAgrupacion))
+                        if (coloresBarra.hasOwnProperty(agrupaciones.idAgrupacion)) {
+                            let colores = coloresBarra[agrupaciones.idAgrupacion];
+                            primerColor = colores[0];
+                            segundoColor = colores[1];
+                        } else {
+                            primerColor = 'blue'
+                        }
+                    
+                        agrupaciones.listas.forEach((lista) => {
+                            let resultado = lista.votos * 100 / agrupaciones.votos;
+                            let barraNumero;
+                            let totalVotos;
+                    
+                            if (resultado.toFixed(0) == 0 || isNaN(resultado)){
+                                barraNumero = "";
+                            } else {
+                                barraNumero = resultado.toFixed(0).toString() + "%";
+                            }
+                    
+                            const itemGrilla = `
+                                <div class="partidopolitico">
+                                    <div class="partidopoliticoleft">
+                                        <p><b>${lista.nombre}</b></p>
+                                    </div>
+                                    <div class="partidopoliticoright">
+                                        <p>${(resultado.toFixed(2))}%</p>
+                                        <p>${lista.votos} VOTOS</p>
+                                    </div>
+                                </div>
+                    
+                                <div class="progress" style="background: ${segundoColor};">
+                                    <div class="progress-bar" style="width:${resultado.toFixed(0)}%; background: ${primerColor};">
+                                        <span class="progress-bar-text">${barraNumero}</span>
+                                    </div>
+                                </div>
+                            `;
+                    
+                            document.getElementById('agrupaciones_politicas').innerHTML += itemGrilla;
+                        });
+                    });
+
+                    // datosApi.valoresTotalizadosPositivos.forEach((agrupaciones) => {
+
+                    //     const grilla = `
+                    //     <h4 id="agrupacionNombre">${agrupaciones.nombreAgrupacion}</h4>
+                    //     `;
+                    //     document.getElementById('agrupaciones_politicas').innerHTML += grilla
+                    //     if (coloresBarra.hasOwnProperty(agrupaciones.idAgrupacion)) {
+                    //         let colores = coloresBarra[agrupaciones.idAgrupacion];
+                    //         let primerColor = colores[0];
+                    //         // let segundoColor = colores[1];
+                    //         console.log(primerColor)
+                    //     }
+                    //     agrupaciones.listas.forEach((lista) => {
+
+                    //         let resultado = lista.votos * 100 / agrupaciones.votos
+                    //         let barraNumero;
+                    //         let totalVotos;
+                    //         if (resultado.toFixed(0) == 0 || isNaN(resultado)){
+                    //             barraNumero = ""
+                    //         } 
+                    //         else {
+                    //             barraNumero = resultado.toFixed(0).toString() + "%"
+                    //         }
+                    //         const itemGrilla = `
+                    //         <div class="partidopolitico">
+                    //         <div class="partidopoliticoleft">
+                    //             <p><b>${lista.nombre}</b></p>
+                    //         </div>
+                    //         <div class="partidopoliticoright">
+                    //             <p>${(resultado.toFixed(2))}%</p>
+                    //             <p>${lista.votos} VOTOS</p>
+                    //         </div>
+                    //     </div>
+
+                    //     <div class="progress" style="background: var(--grafica-amarillo-claro);">
+                    //         <div class="progress-bar" style="width:${resultado.toFixed(0)}%; background: ${primerColor};">
+                    //             <span class="progress-bar-text">${barraNumero}</span>
+                    //         </div>
+                    //     </div>
+                    //     </div>
+                    //     `;
+
+                    //         document.getElementById('agrupaciones_politicas').innerHTML += itemGrilla
+                    //     })
+                    //     // tarjeta.innerHTML += itemGrilla;
+                        
+                    // })
                 }
 
 
