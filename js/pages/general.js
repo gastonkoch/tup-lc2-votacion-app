@@ -24,9 +24,10 @@ fetch("https://resultados.mininterior.gob.ar/api/menu/periodos")
 
 let divElecciones = document.getElementById('elecciones_div')
 divElecciones.display = 'None'
+document.getElementById('mensaje_amarrillo').innerHTML = "Debe seleccionar los valores a filtrar y hacer clic en el botón FILTRAR"
 muestra_oculta('verde')
 muestra_oculta('rojo')
-muestra_oculta('amarillo')
+// muestra_oculta('amarillo')
 
 function cargarCargos() {
     const anios = document.getElementById('year')
@@ -193,6 +194,7 @@ function muestra_oculta(elementId) {
 }
 
 function filtrar() {
+    document.getElementById('warning_mensaje').style.display = 'None'
     const cargoFiltro = document.getElementById('cargo');
     const distritoFiltro = document.getElementById('distritos');
     const seccionFiltro = document.getElementById('seccion_filtro');
@@ -238,7 +240,7 @@ function filtrar() {
     } else {
 
         let anioEleccion = anios.value
-        let categoriaId = 2;
+        let categoriaId = 2;    //CATEGORIA ES EL CARGO SEGUN EL PROFE
         let distritoId = distritoFiltro.value;
         let seccionProvincialId = document.getElementById('hdSeccionProvincial').value;
         let seccionId = seccionFiltro.value;

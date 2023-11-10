@@ -294,6 +294,7 @@ label {
     font-size: 12px;
     font-weight: 200;
     text-align: center;
+    display: flex;
 }
 
 

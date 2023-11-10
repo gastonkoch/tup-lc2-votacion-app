@@ -24,9 +24,10 @@ fetch("https://resultados.mininterior.gob.ar/api/menu/periodos")
 
 let divElecciones = document.getElementById('elecciones_div')
 divElecciones.display = 'None'
+document.getElementById('mensaje_amarrillo').innerHTML = "Debe seleccionar los valores a filtrar y hacer clic en el botón FILTRAR"
 muestra_oculta('verde')
 muestra_oculta('rojo')
-muestra_oculta('amarillo')
+// muestra_oculta('amarillo')
 
 function cargarCargos() {
     const anios = document.getElementById('year')
@@ -120,14 +121,14 @@ function cargarSeccion() {
         if (eleccion.IdEleccion == tipoEleccion) {
             eleccion.Cargos.forEach((cargo) => {
                 if (cargo.IdCargo === cargoFiltro.value) {
-                    cargo.Distritos.forEach((itemDistrito) => {    
+                    cargo.Distritos.forEach((itemDistrito) => {
                         if (itemDistrito.IdDistrito == distritoFiltro.value) {
                             localStorage.setItem('distrito_seleccionado', itemDistrito.Distrito);
                             itemDistrito.SeccionesProvinciales.forEach((seccionesProvinciales) => {
-                                if (seccionesProvinciales.IDSeccionProvincial != undefined || seccionesProvinciales.IDSeccionProvincial != null){
+                                if (seccionesProvinciales.IDSeccionProvincial != undefined || seccionesProvinciales.IDSeccionProvincial != null) {
                                     document.getElementById('hdSeccionProvincial').innerHTML = seccionesProvinciales.IDSeccionProvincial
                                 } else {
-                                     document.getElementById('hdSeccionProvincial').innerHTML = ''
+                                    document.getElementById('hdSeccionProvincial').innerHTML = ''
                                 }
                                 seccionesProvinciales.Secciones.forEach((Secciones) => {
                                     const nuevaOpcion = new Option(Secciones.Seccion, Secciones.IdSeccion);
@@ -142,7 +143,7 @@ function cargarSeccion() {
     });
 }
 
-function guardarSeccion(){
+function guardarSeccion() {
     const cargoFiltro = document.getElementById('cargo');
     const distritoFiltro = document.getElementById('distritos');
     const seccionFiltro = document.getElementById('seccion_filtro');
@@ -152,11 +153,11 @@ function guardarSeccion(){
         if (eleccion.IdEleccion == tipoEleccion) {
             eleccion.Cargos.forEach((cargo) => {
                 if (cargo.IdCargo === cargoFiltro.value) {
-                    cargo.Distritos.forEach((itemDistrito) => {    
+                    cargo.Distritos.forEach((itemDistrito) => {
                         if (itemDistrito.IdDistrito == distritoFiltro.value) {
                             itemDistrito.SeccionesProvinciales.forEach((seccionesProvinciales) => {
                                 seccionesProvinciales.Secciones.forEach((Secciones) => {
-                                    if (Secciones.IdSeccion == seccionFiltro.value){
+                                    if (Secciones.IdSeccion == seccionFiltro.value) {
                                         localStorage.setItem('seccion_seleccionado', Secciones.Seccion);
                                     }
                                 })
@@ -193,6 +194,7 @@ function muestra_oculta(elementId) {
 }
 
 function filtrar() {
+    document.getElementById('warning_mensaje').style.display = 'None'
     const cargoFiltro = document.getElementById('cargo');
     const distritoFiltro = document.getElementById('distritos');
     const seccionFiltro = document.getElementById('seccion_filtro');
@@ -237,7 +239,7 @@ function filtrar() {
         muestra_oculta('amarillo')
     } else {
 
-        let anioEleccion = anios.value 
+        let anioEleccion = anios.value
         let categoriaId = 2;
         let distritoId = distritoFiltro.value;
         let seccionProvincialId = document.getElementById('hdSeccionProvincial').value;
@@ -246,76 +248,79 @@ function filtrar() {
         let mesaId = '';
 
         let url = "https://resultados.mininterior.gob.ar/api/resultados/getResultados"
-        let parametros =`?anioEleccion=${anioEleccion}&tipoRecuento=${tipoRecuento}&tipoEleccion=${tipoEleccion}&categoriaId=${categoriaId}&distritoId=${distritoId}&seccionProvincialId=${seccionProvincialId}&seccionId=${seccionId}&circuitoId=${circuitoId}&mesaId=${mesaId}`  
+        let parametros = `?anioEleccion=${anioEleccion}&tipoRecuento=${tipoRecuento}&tipoEleccion=${tipoEleccion}&categoriaId=${categoriaId}&distritoId=${distritoId}&seccionProvincialId=${seccionProvincialId}&seccionId=${seccionId}&circuitoId=${circuitoId}&mesaId=${mesaId}`
 
 
 
         // console.log(url + parametros)
 
         fetch(url + parametros)
-        .then(response => {
-            // Si no es exitoso retorno el error
-            if (response.status === 200) {
-                return response.json();
-            } else {
-                let mensaje_rojo = "Hubo un error en la comunicación con el servidor, por favor contactese con soporte"
-                document.getElementById('mensaje_rojo').innerHTML = mensaje_rojo
-                muestra_oculta('rojo')
-            }
-        })
-        .then(datosApi => {
-
-            const estadoRecuento = datosApi.estadoRecuento;
-
-            document.getElementById('mesaComputada').innerHTML = estadoRecuento.mesasTotalizadas
-            document.getElementById('electores').innerHTML = estadoRecuento.cantidadElectores
-            document.getElementById('participacionSobreEscrutado').innerHTML = estadoRecuento.participacionPorcentaje + "%"
-            // console.log(datosApi)
-
-            // Aca no entra porque directamente no anda la api
-            
-            let divElecciones = document.getElementById('elecciones_div')
-            divElecciones.style.display = 'block'
-            document.getElementById('titulo_elecciones').innerHTML = `Elecciones ${anioEleccion} | PASO`
-            // poner display y cambiar los titulos 
-            let divDatos = document.querySelector('.container')
-            let divTarjetas = document.querySelector('.tarjetas')
-            let divFooter = document.querySelector('.foot')
-
-            divDatos.style.display = 'flex'
-            divDatos.style.justifyContent = 'center'
-            divDatos.style.height = '130px';
-
-            divTarjetas.style.display = 'flex';
-            divTarjetas.style.width = '100%';
-            divTarjetas.style.justifyContent = 'center';
-            divTarjetas.style.marginBottom = '100px';
-            divFooter.style.margin = "0 20px";
-
-
-
-            let tituloElecciones = document.getElementById('subtitulo_elecciones')
-            tituloElecciones.display = 'block'
-            document.getElementById('subtitulo_elecciones').innerHTML = `${anioEleccion} > PASO>${localStorage.getItem('cargo_seleccionado')} > ${localStorage.getItem('distrito_seleccionado')} > ${localStorage.getItem('seccion_seleccionado')}`
-
-            
-
-            for (let i = 0; i < mapas.length; i++) {
-                const provincia = mapas[i].provincia;
-                if(localStorage.getItem('distrito_seleccionado') == provincia){
-                    document.getElementById('provinciaSeleccionada').innerHTML = mapas[i].provincia;
-                    document.getElementById('provinciaSeleccionadaImagen').innerHTML = mapas[i].svg;    
+            .then(response => {
+                // Si no es exitoso retorno el error
+                if (response.status === 200) {
+                    return response.json();
+                } else {
+                    let mensaje_rojo = "Hubo un error en la comunicación con el servidor, por favor contactese con soporte"
+                    document.getElementById('mensaje_rojo').innerHTML = mensaje_rojo
+                    muestra_oculta('rojo')
                 }
-            }
+            })
+            .then(datosApi => {
 
-        })
-        .catch(error => {
-            console.error('Error:', error);
-        });
+                const estadoRecuento = datosApi.estadoRecuento;
+
+                document.getElementById('mesaComputada').innerHTML = estadoRecuento.mesasTotalizadas
+                document.getElementById('electores').innerHTML = estadoRecuento.cantidadElectores
+                document.getElementById('participacionSobreEscrutado').innerHTML = estadoRecuento.participacionPorcentaje + "%"
+                console.log(datosApi)
+                if (estadoRecuento.mesasTotalizadas == 0) {
+                    document.getElementById('mensaje_amarrillo').innerHTML = 'No se encontró información para la consulta realizada'
+                    muestra_oculta('amarillo')
+                } else {
+                    let divElecciones = document.getElementById('elecciones_div')
+                    divElecciones.style.display = 'block'
+                    document.getElementById('titulo_elecciones').innerHTML = `Elecciones ${anioEleccion} | PASO`
+                    // poner display y cambiar los titulos 
+                    let divDatos = document.querySelector('.container')
+                    let divTarjetas = document.querySelector('.tarjetas')
+                    let divFooter = document.querySelector('.foot')
+
+                    divDatos.style.display = 'flex';
+                    divDatos.style.justifyContent = 'center';
+                    divDatos.style.height = '130px';
+
+                    divTarjetas.style.display = 'flex';
+                    divTarjetas.style.width = '100%';
+                    divTarjetas.style.justifyContent = 'center';
+                    divTarjetas.style.marginBottom = '100px';
+                    divFooter.style.margin = "0 20px";
+
+
+
+                    let tituloElecciones = document.getElementById('subtitulo_elecciones')
+                    tituloElecciones.display = 'block'
+                    document.getElementById('subtitulo_elecciones').innerHTML = `${anioEleccion} > PASO>${localStorage.getItem('cargo_seleccionado')} > ${localStorage.getItem('distrito_seleccionado')} > ${localStorage.getItem('seccion_seleccionado')}`
+
+
+
+                    for (let i = 0; i < mapas.length; i++) {
+                        const provincia = mapas[i].provincia;
+                        if (localStorage.getItem('distrito_seleccionado') == provincia) {
+                            document.getElementById('provinciaSeleccionada').innerHTML = mapas[i].provincia;
+                            document.getElementById('provinciaSeleccionadaImagen').innerHTML = mapas[i].svg;
+                        }
+                    }
+                }
+
+
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
     }
 }
 
-function agregaInforme(){
+function agregaInforme() {
     let distritoFiltro = document.getElementById('distritos');
     const seccionFiltro = document.getElementById('seccion_filtro');
     const anios = document.getElementById('year')
@@ -325,6 +330,6 @@ function agregaInforme(){
     let seccionProvincialId = document.getElementById('hdSeccionProvincial').value;
     let seccionId = seccionFiltro.value;
 
-    listaInformes = [anioEleccion,tipoRecuento,tipoEleccion,categoriaId,distritoId,seccionProvincialId,seccionId];
-    localStorage.setItem('INFORMES',listaInformes);
+    listaInformes = [anioEleccion, tipoRecuento, tipoEleccion, categoriaId, distritoId, seccionProvincialId, seccionId];
+    localStorage.setItem('INFORMES', listaInformes);
 }
