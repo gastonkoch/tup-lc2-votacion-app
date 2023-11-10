@@ -312,7 +312,7 @@ label {
     font-size: 15px;
 }
 
-.tarjeta>h4 {
+.tarjeta>div>h4 {
     margin: auto 5px;
     border-bottom: 1px solid rgb(109, 99, 99);
     font-size: 14px;
