@@ -310,65 +310,50 @@ function filtrar() {
                             document.getElementById('provinciaSeleccionada').innerHTML = mapas[i].provincia;
                             document.getElementById('provinciaSeleccionadaImagen').innerHTML = mapas[i].svg;
                         }
-                    let divDatos = document.querySelector('.container')
-                    let divTarjetas = document.querySelector('.tarjetas')
-                    let divFooter = document.querySelector('.foot')
-                    let provinciaSeleccionadaImagen = document.getElementById('provinciaSeleccionadaImagen')
-                    let provinciadiv = document.querySelector('.provincia')
-                    divDatos.style.display = 'flex';
-                    divDatos.style.justifyContent = 'center';
-                    divDatos.style.height = '130px';
-                    divTarjetas.style.display = 'flex';
-                    divTarjetas.style.width = '100%';
-                    divTarjetas.style.justifyContent = 'center';
-                    divTarjetas.style.marginBottom = '100px';
-                    divFooter.style.margin = "0 20px";
-                    provinciaSeleccionadaImagen.style.height = '365px'
-                    provinciadiv.style.height = '365px'
-                    provinciadiv.style.display = 'flex';
-                    provinciadiv.style.justifyContent = 'center';
+                        let divDatos = document.querySelector('.container')
+                        let divTarjetas = document.querySelector('.tarjetas')
+                        let divFooter = document.querySelector('.foot')
+                        let provinciaSeleccionadaImagen = document.getElementById('provinciaSeleccionadaImagen')
+                        let provinciadiv = document.querySelector('.provincia')
+                        divDatos.style.display = 'flex';
+                        divDatos.style.justifyContent = 'center';
+                        divDatos.style.height = '130px';
+                        divTarjetas.style.display = 'flex';
+                        divTarjetas.style.width = '100%';
+                        divTarjetas.style.justifyContent = 'center';
+                        divTarjetas.style.marginBottom = '100px';
+                        divFooter.style.margin = "0 20px";
+                        provinciaSeleccionadaImagen.style.height = '365px'
+                        provinciadiv.style.height = '365px'
+                        provinciadiv.style.display = 'flex';
+                        provinciadiv.style.justifyContent = 'center';
                     }
                     datosApi.valoresTotalizadosPositivos.forEach((agrupaciones) => {
                         console.log(agrupaciones.nombreAgrupacion)
-                        const nuevoItem = document.createElement('div');
-                        nuevoItem.className = 'item';
-
-                        const h4 = document.createElement('h4');
-                        h4.id = 'agrupacionNombre';
-                        h4.textContent = agrupaciones.nombreAgrupacion;
+                        const grilla = `
+                        <h4 id="agrupacionNombre">${agrupaciones.nombreAgrupacion}</h4>
+                        `;
 
                         agrupaciones.listas.forEach((lista) => {
-                            const divPartidoPolitico = document.createElement('div');
-                            divPartidoPolitico.className = 'partidopolitico';
-
-                            const partidopoliticoleft = document.createElement('div');
-                            partidopoliticoleft.className = 'partidopoliticoleft';
-                            const p = document.createElement('p');
-                            const b = document.createElement('b');
-                            b.textContent = lista.nombre;
-                            const partidopoliticoright = document.createElement('div');
-                            partidopoliticoright.className = 'partidopoliticoright';
-                            // const p_partidopoliticoright = document.createElement('p');
-                            // p_partidopoliticoright.textContent = (listas.votos * 100 / valoresTotalizadosPositivos.votos)
-                            const h5 = document.createElement('h5');
-                            h5.textContent = lista.votos;
+                            const itemGrilla = `
+                            <div class="partidopolitico">
+                            <div class="partidopoliticoleft">
+                                <p><b>${lista.nombre}</b></p>
+                            </div>
+                            <div class="partidopoliticoright">
+                                <p>${(lista.votos * 100 / agrupaciones.votos)}%</p>
+                            </div>
+                        </div>
+                        <h5> ${lista.votos} VOTOS</h5>
+                        <div class="progress" style="background: var(--grafica-amarillo-claro);">
+                            <div class="progress-bar" style="width:73%; background: var(--grafica-amarillo);">
+                                <span class="progress-bar-text">73%</span>
+                            </div>
+                        </div>
+                        </div>
+                        `;
                         })
-
-                        // Agregar más elementos según el ejemplo que proporcionaste (divs, h5, progress, etc.)
-
-                        // Agregar los elementos al nuevo item
-                        nuevoItem.appendChild(h4);
-                        // nuevoItem.appendChild(divPartidoPolitico);
-                        // divPartidoPolitico.append(partidopoliticoleft);
-                        // partidopoliticoleft.appendChild(p);
-                        // p.appendChild(b);
-                        // partidopoliticoright.appendChild(p_partidopoliticoright)
-                        // nuevoItem.appendChild(h5)
-                        // Agregar más elementos al nuevo item según sea necesario
-
-                        // Obtener el contenedor y agregar el nuevo item
-                        const agrupacione_politicas = document.getElementById('agrupacione_politicas');
-                        agrupacione_politicas.appendChild(nuevoItem);
+                        tarjeta.innerHTML += itemGrilla;
                     })
                 }
 
