@@ -238,7 +238,7 @@ function filtrar() {
         document.getElementById('mensaje_amarrillo').innerHTML = mensaje_amarillo
         muestra_oculta('amarillo')
     } else {
-
+        let contadorBarras = 0
         let anioEleccion = anios.value
         let categoriaId = 2;
         let distritoId = distritoFiltro.value;
@@ -367,18 +367,30 @@ function filtrar() {
                         } else {
                             primerColor = 'blue'
                         }
-                    
+                        console.log(agrupaciones.votosPorcentaje)
+                        // LA PARTE DE && agrupaciones.votosPorcentaje > 2) NO VA, ES SOLO PARA VER BARRAS ALTAS
+                        if (contadorBarras < 8 && agrupaciones.votosPorcentaje > 2) {
+                            document.getElementById('grid_barras').innerHTML += ` 
+                                                    <div class="bar" style="--bar-value:${agrupaciones.votosPorcentaje}%;" data-name="${agrupaciones.nombreAgrupacion}" title="Your Blog 85%">
+                                                        <div class="bar" style="--bar-value:${agrupaciones.votosPorcentaje}%;--bar-color:var(--grafica-amarillo);"
+                                                            title="${agrupaciones.nombreAgrupacion}85%"></div>
+                                                    </div>
+                                                    `
+                            contadorBarras += 1
+                        }
+
+
                         agrupaciones.listas.forEach((lista) => {
                             let resultado = lista.votos * 100 / agrupaciones.votos;
                             let barraNumero;
                             let totalVotos;
-                    
-                            if (resultado.toFixed(0) == 0 || isNaN(resultado)){
+
+                            if (resultado.toFixed(0) == 0 || isNaN(resultado)) {
                                 barraNumero = "";
                             } else {
                                 barraNumero = resultado.toFixed(0).toString() + "%";
                             }
-                    
+
                             const itemGrilla = `
                                 <div class="partidopolitico">
                                     <div class="partidopoliticoleft">
@@ -396,7 +408,7 @@ function filtrar() {
                                     </div>
                                 </div>
                             `;
-                    
+
                             document.getElementById('agrupaciones_politicas').innerHTML += itemGrilla;
                         });
                     });
@@ -446,7 +458,7 @@ function filtrar() {
                     //         document.getElementById('agrupaciones_politicas').innerHTML += itemGrilla
                     //     })
                     //     // tarjeta.innerHTML += itemGrilla;
-                        
+
                     // })
                 }
 
