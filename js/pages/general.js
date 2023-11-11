@@ -238,7 +238,7 @@ function filtrar() {
         document.getElementById('mensaje_amarrillo').innerHTML = mensaje_amarillo
         muestra_oculta('amarillo')
     } else {
-
+        let contadorBarras = 0
         let anioEleccion = anios.value
         let categoriaId = 2;    //CATEGORIA ES EL CARGO SEGUN EL PROFE
         let distritoId = distritoFiltro.value;
@@ -269,50 +269,170 @@ function filtrar() {
 
             const estadoRecuento = datosApi.estadoRecuento;
 
-            console.log(`Mesas Totalizadas: ${estadoRecuento.mesasTotalizadas}`);
-            console.log(`Cantidad de Electores: ${estadoRecuento.cantidadElectores}`);
-            console.log(`Participación Porcentaje: ${estadoRecuento.participacionPorcentaje}`);
-
             document.getElementById('mesaComputada').innerHTML = estadoRecuento.mesasTotalizadas
             document.getElementById('electores').innerHTML = estadoRecuento.cantidadElectores
-            document.getElementById('participacionSobreEscrutado').innerHTML = estadoRecuento.participacionPorcentaje + " %"
+            document.getElementById('participacionSobreEscrutado').innerHTML = estadoRecuento.participacionPorcentaje + "%"
             // console.log(datosApi)
+            console.log(JSON.stringify(datosApi))
+            if (estadoRecuento.mesasTotalizadas == 0) {
+                document.getElementById('mensaje_amarrillo').innerHTML = 'No se encontró información para la consulta realizada'
+                muestra_oculta('amarillo')
+            } else {
+                let divElecciones = document.getElementById('elecciones_div')
+                divElecciones.style.display = 'block'
+                document.getElementById('titulo_elecciones').innerHTML = `Elecciones ${anioEleccion} | Generales`
+                // poner display y cambiar los titulos 
+                let divDatos = document.querySelector('.container')
+                let divTarjetas = document.querySelector('.tarjetas')
+                let divFooter = document.querySelector('.foot')
 
-            // Aca no entra porque directamente no anda la api
-            
-            let divElecciones = document.getElementById('elecciones_div')
-            divElecciones.style.display = 'block'
-            document.getElementById('titulo_elecciones').innerHTML = `Elecciones ${anioEleccion} | Generales`
-            // poner display y cambiar los titulos 
-            let divDatos = document.querySelector('.container')
-            let divTarjetas = document.querySelector('.tarjetas')
-            let divFooter = document.querySelector('.foot')
+                divDatos.style.display = 'flex';
+                divDatos.style.justifyContent = 'center';
+                divDatos.style.height = '130px';
 
-            divDatos.style.display = 'flex'
-            divDatos.style.justifyContent = 'center'
-            divDatos.style.height = '130px';
-
-            divTarjetas.style.display = 'flex';
-            divTarjetas.style.width = '100%';
-            divTarjetas.style.justifyContent = 'center';
-            divTarjetas.style.marginBottom = '100px';
-            divFooter.style.margin = "0 20px";
+                divTarjetas.style.display = 'flex';
+                divTarjetas.style.width = '100%';
+                divTarjetas.style.justifyContent = 'center';
+                divTarjetas.style.marginBottom = '100px';
+                divFooter.style.margin = "0 20px";
 
 
+                let tituloElecciones = document.getElementById('subtitulo_elecciones')
+                tituloElecciones.display = 'block'
+                document.getElementById('subtitulo_elecciones').innerHTML = `${anioEleccion} > Generales >${localStorage.getItem('cargo_seleccionado')} > ${localStorage.getItem('distrito_seleccionado')} > ${localStorage.getItem('seccion_seleccionado')}`
 
-            let tituloElecciones = document.getElementById('subtitulo_elecciones')
-            tituloElecciones.display = 'block'
-            document.getElementById('subtitulo_elecciones').innerHTML = `${anioEleccion} > Generales >${localStorage.getItem('cargo_seleccionado')} > ${localStorage.getItem('distrito_seleccionado')} > ${localStorage.getItem('seccion_seleccionado')}`
-
-            
-
-            for (let i = 0; i < mapas.length; i++) {
-                const provincia = mapas[i].provincia;
-                if(localStorage.getItem('distrito_seleccionado') == provincia){
-                    document.getElementById('provinciaSeleccionada').innerHTML = mapas[i].provincia;
-                    document.getElementById('provinciaSeleccionadaImagen').innerHTML = mapas[i].svg;    
+                for (let i = 0; i < mapas.length; i++) {
+                    const provincia = mapas[i].provincia;
+                    if (localStorage.getItem('distrito_seleccionado').toUpperCase() == provincia.toUpperCase()) {
+                        document.getElementById('provinciaSeleccionada').innerHTML = mapas[i].provincia;
+                        document.getElementById('provinciaSeleccionadaImagen').innerHTML = mapas[i].svg;
+                    }
+                    let divDatos = document.querySelector('.container')
+                    let divTarjetas = document.querySelector('.tarjetas')
+                    let divFooter = document.querySelector('.foot')
+                    let provinciaSeleccionadaImagen = document.getElementById('provinciaSeleccionadaImagen')
+                    let provinciadiv = document.querySelector('.provincia')
+                    divDatos.style.display = 'flex';
+                    divDatos.style.justifyContent = 'center';
+                    divDatos.style.height = '130px';
+                    divTarjetas.style.display = 'flex';
+                    divTarjetas.style.width = '100%';
+                    divTarjetas.style.justifyContent = 'center';
+                    divTarjetas.style.marginBottom = '100px';
+                    divFooter.style.margin = "0 20px";
+                    provinciaSeleccionadaImagen.style.height = '365px'
+                    provinciadiv.style.height = '365px'
+                    provinciadiv.style.display = 'flex';
+                    provinciadiv.style.justifyContent = 'center';
                 }
+
+                let coloresBarra = {
+                    // primera columna van los colores que cargan la barra, la segunda es el fondo
+                    1: ['rgb(255, 213, 0)', 'rgba(255, 213, 4, 0.3)'],
+                    2: ['rgb(0, 169, 232)', 'rgba(0, 169, 232, 0.3)'],
+                    3: ['rgb(171, 40, 40)', 'rgba(171, 40, 40, 0.3)'],
+                    4: ['rgb(112, 76, 159)', 'rgba(112, 76, 159, 0.5)'],
+                    5: ['rgb(77, 46, 110)', 'rgba(77, 46, 110, 0.5)'],
+                    6: ['rgb(128, 128, 128)', 'rgb(128, 128, 128, 0.5)'],
+                    7: ['rgb(102, 171, 60)', 'rgba(102, 171, 60, 0.5)'],
+                    8: ['rgb(243, 96, 188)', 'rgb(235, 189, 218 )'],
+                    9: ['rgb(230, 41, 61)', 'rgba(235, 189, 194)'],
+                    10: ['rgb(50, 219, 201)', 'rgb(165, 218, 212)'],
+                    11: ['rgb(153, 220, 19)', 'rgb(182, 212, 123)'],
+                    12: ['rgb(232, 187, 49)', 'rgb(231, 183, 152)'],
+                    13: ['rgb(51, 205, 91)', 'rgb(153, 209, 167)'],
+                    14: ['rgb(55, 156, 196 )', 'rgb(137, 182, 200)'],
+                    15: ['rgb(95, 43, 198 )', 'rgb(155, 133, 197)'],
+                    16: ['rgb(255, 38, 245 )', 'rgb(254, 204, 251)'],
+                    17: ['rgb(162, 73, 113 )', 'rgb(167, 134, 149 )'],
+                }
+                let claves = Object.keys(coloresBarra);
+                let longitud = claves.length;
+                let i = 1;
+                console.log("Arranca la consulta")
+                console.log(datosApi.valoresTotalizadosPositivos)
+                console.log("Termina la consulta")
+                datosApi.valoresTotalizadosPositivos.forEach((agrupaciones) => {
+                    let primerColor;
+                    let segundoColor;
+                    while(i <= longitud){
+                        if (coloresBarra.hasOwnProperty(i)) {
+                            let colores = coloresBarra[i];
+                            primerColor = colores[0];
+                            segundoColor = colores[1];
+
+                        } else {
+                            primerColor = 'blue'
+                            segundoColor = 'red'
+                        }
+                        break
+                    }
+                    const grilla = `
+                        <h4 id="agrupacionNombre" style = "border-bottom: 1px solid rgb(109, 99, 99);" >${agrupaciones.nombreAgrupacion}</h4>
+                        <p style="color:black; display: flex; justify-content: flex-end; font-size: 12px">${agrupaciones.votosPorcentaje}%</p>
+                        <p style="color:black; display: flex; justify-content: flex-end; font-size: 12px">${agrupaciones.votos}</p>
+                        <div class="progress" style="background: ${segundoColor};">
+                            <div class="progress-bar" style="width:${agrupaciones.votosPorcentaje}%; background: ${primerColor};">
+                                <span class="progress-bar-text">${agrupaciones.votosPorcentaje}%</span>
+                            </div>
+                        </div>
+                    `;
+                    document.getElementById('agrupaciones_politicas').innerHTML += grilla;
+                    // Mover el bloque if fuera del bucle de listas
+                    
+                    i = i + 1;
+
+                    // LA PARTE DE && agrupaciones.votosPorcentaje > 2) NO VA, ES SOLO PARA VER BARRAS ALTAS
+                    
+                    if (contadorBarras < 8 && agrupaciones.votosPorcentaje > 0.2)  {
+                        document.getElementById('grid_barras').innerHTML += ` 
+                                                <div class="bar" style="--bar-value:${agrupaciones.votosPorcentaje}%;" data-name="${agrupaciones.nombreAgrupacion}" title="Your Blog 85%">
+                                                    <div class="bar" style="--bar-value:${agrupaciones.votosPorcentaje}% margin-bottom: 25px;;--bar-color:${primerColor};"
+                                                        title="${agrupaciones.nombreAgrupacion}85%"></div>
+                                                </div>
+                                                `
+                        contadorBarras += 1
+                    }
+
+                    console.log("Arranca la consulta")
+                    console.log(agrupaciones.listas)
+                    console.log("Termina la consulta")
+                    // agrupaciones.listas.forEach((lista) => {
+                    //     console.log("a")
+                    //     let resultado = lista.votos * 100 / agrupaciones.votos;
+                    //     let barraNumero;
+                    //     let totalVotos;
+                    //     if (resultado.toFixed(0) == 0 || isNaN(resultado)) {
+                    //         barraNumero = 0 + " %";
+                    //         widthBarra = 0
+                    //     } else {
+                    //         widthBarra = resultado.toFixed(0).toString()
+                    //         barraNumero = resultado.toFixed(0).toString() + "%";
+                    //     }
+
+                    //     const itemGrilla = `
+                    //         <div class="partidopolitico">
+                    //             <div class="partidopoliticoleft">
+                    //                 <p><b>${lista.nombre}</b></p>
+                    //             </div>
+                    //             <div class="partidopoliticoright">
+                    //                 <p>${(barraNumero)}%</p>
+                    //                 <p>${lista.votos} VOTOS</p>
+                    //             </div>
+                    //         </div>
+                
+                    //         <div class="progress" style="background: ${segundoColor};">
+                    //             <div class="progress-bar" style="width:${widthBarra}%; background: ${primerColor};">
+                    //                 <span class="progress-bar-text">${barraNumero}</span>
+                    //             </div>
+                    //         </div>
+                    //     `;
+
+                    //     document.getElementById('agrupaciones_politicas').innerHTML += itemGrilla;
+                    // });
+                });
             }
+            
 
         })
         .catch(error => {

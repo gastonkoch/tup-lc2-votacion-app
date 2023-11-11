@@ -252,7 +252,7 @@ function filtrar() {
 
 
 
-        // console.log(url + parametros)
+        console.log(url + parametros)
 
         fetch(url + parametros)
             .then(response => {
@@ -352,6 +352,10 @@ function filtrar() {
                     let claves = Object.keys(coloresBarra);
                     let longitud = claves.length;
                     let i = 1;
+                    console.log("Arranca la consulta")
+                    console.log(datosApi.valoresTotalizadosPositivos)
+                    console.log("Termina la consulta")
+
                     datosApi.valoresTotalizadosPositivos.forEach((agrupaciones) => {
                         const grilla = `
                             <h4 id="agrupacionNombre">${agrupaciones.nombreAgrupacion}</h4>
@@ -362,7 +366,6 @@ function filtrar() {
                         // Mover el bloque if fuera del bucle de listas
                         while(i <= longitud){
                             if (coloresBarra.hasOwnProperty(i)) {
-                                console.log(i.toString() + " Dentro del if")
                                 let colores = coloresBarra[i];
                                 primerColor = colores[0];
                                 segundoColor = colores[1];
@@ -376,7 +379,7 @@ function filtrar() {
                         i = i + 1;
 
                         // LA PARTE DE && agrupaciones.votosPorcentaje > 2) NO VA, ES SOLO PARA VER BARRAS ALTAS
-                        // if (contadorBarras < 8 && agrupaciones.votosPorcentaje > 1) {
+                        
                         if (contadorBarras < 8 && agrupaciones.votosPorcentaje > 0.2)  {
                             document.getElementById('grid_barras').innerHTML += ` 
                                                     <div class="bar" style="--bar-value:${agrupaciones.votosPorcentaje}%;" data-name="${agrupaciones.nombreAgrupacion}" title="Your Blog 85%">
