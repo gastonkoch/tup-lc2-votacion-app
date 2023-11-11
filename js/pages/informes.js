@@ -1,3 +1,11 @@
+for (let i = 0; i < mapas.length; i++) {
+    const provincia = mapas[i].provincia;
+    if (localStorage.getItem('distrito_seleccionado').toUpperCase() == provincia.toUpperCase()) {
+        document.getElementById('mapa').innerHTML = mapas[i].svg;
+    }
+}
+
+
 muestra_oculta('verde')
 muestra_oculta('rojo')
 muestra_oculta('amarillo')

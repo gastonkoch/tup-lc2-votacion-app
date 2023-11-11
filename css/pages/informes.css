@@ -167,7 +167,7 @@
 
 .grilla {
     display: grid;
-    grid-template-columns: 225px 150px 425px 150px;
+    grid-template-columns: 225px 150px 605px 150px;
     grid-template-rows: auto 300px;
     border-radius: 15px;
     border: 1px var(--borde-Grilla) solid;
@@ -238,9 +238,11 @@
     padding: 5px;
     align-items: flex-start;
     display: flex;
-    max-width: 125px;
+    width: 250px;
     margin: 10px 10px auto;
-    height: 70px;
+    height: 90px;
+    display: flex;
+    align-items: center;
 }
 
 
@@ -250,9 +252,11 @@
     padding: 5px;
     align-items: flex-start;
     display: flex;
-    max-width: 125px;
-    height: 70px;
+    width: 250px;
+    height: 90px;
     margin: 10px 10px auto;
+    display: flex;
+    align-items: center;
 }
 
 .participacion {
@@ -261,9 +265,10 @@
     padding: 5px;
     align-items: flex-start;
     display: flex;
-    max-width: 125px;
+    width: 250px;
     margin: 10px 10px auto;
-    height: 70px;
+    height: 90px;
+    align-items: center;
 }
 
 .mesas >h4,
@@ -309,3 +314,24 @@ p {
     line-height: 22px;
     font-size: 10px;
 }
+
+.texto-tarjetas {
+    display: flex;
+    align-items: center;
+}
+
+.texto-tarjetas > p{
+    color: white;
+}
+
+/* svg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+} */
+
+/* svg > path {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+} */
