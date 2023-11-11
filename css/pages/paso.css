@@ -411,13 +411,13 @@ svg>path {
 
 .chart-wrap.horizontal .bar::after {
     /* giramos las letras para horizontal*/
-    transform: rotate(45deg);
+    transform: rotate(47deg);
     padding-top: 0px;
     display: block;
 }
 
 .chart-wrap .grid {
-    margin-left: 50px;
+    margin-top: 80px;
     position: relative;
     padding: 5px 0 5px 0;
     height: 100%;
@@ -470,8 +470,8 @@ svg>path {
     display: inline-block;
     white-space: nowrap;
     position: relative;
-    left: 25px;
-    bottom: 36px;
+    left: 12px;
+    bottom: 42px;
 }
 
 .filtrar > button  {

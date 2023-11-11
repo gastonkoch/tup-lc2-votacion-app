@@ -330,28 +330,29 @@ function filtrar() {
                     }
 
                     let coloresBarra = {
-                        '0008': ['rgb(255, 213, 0)', 'rgba(255, 213, 4, 0.3)'],
-                        '0022': ['rgb(0, 169, 232)', 'rgba(0, 169, 232, 0.3)'],
-                        // SOLO HAY QUE AGREGAR COLORES Y ESTO YA ESTA, SACA LOS QUE PUEDAS DE LAS VARIABLES GLOBALES DEL CSS
-                        '0259': ['rgb(0, 169, 232)', 'rgba(0, 169, 232, 0.3)'],
-                        '0268': ['rgb(0, 169, 232)', 'rgba(0, 169, 232, 0.3)'],
-                        '0298': ['rgb(0, 169, 232)', 'rgba(0, 169, 232, 0.3)'],
-                        '0309': ['rgb(0, 169, 232)', 'rgba(0, 169, 232, 0.3)'],
-                        '0503': ['rgb(0, 169, 232)', 'rgba(0, 169, 232, 0.3)'],
-                        '0511': ['rgb(0, 169, 232)', 'rgba(0, 169, 232, 0.3)'],
-                        '0518': ['rgb(0, 169, 232)', 'rgba(0, 169, 232, 0.3)'],
-                        '0526': ['rgb(0, 169, 232)', 'rgba(0, 169, 232, 0.3)'],
-                        '0546': ['rgb(0, 169, 232)', 'rgba(0, 169, 232, 0.3)'],
-                        '0552': ['rgb(0, 169, 232)', 'rgba(0, 169, 232, 0.3)'],
-                        '0561': ['rgb(0, 169, 232)', 'rgba(0, 169, 232, 0.3)'],
-                        '0567': ['rgb(0, 169, 232)', 'rgba(0, 169, 232, 0.3)'],
-                        '0574': ['rgb(0, 169, 232)', 'rgba(0, 169, 232, 0.3)']
+                        // primera columna van los colores que cargan la barra, la segunda es el fondo
+                        1: ['rgb(255, 213, 0)', 'rgba(255, 213, 4, 0.3)'],
+                        2: ['rgb(0, 169, 232)', 'rgba(0, 169, 232, 0.3)'],
+                        3: ['rgb(171, 40, 40)', 'rgba(171, 40, 40, 0.3)'],
+                        4: ['rgb(112, 76, 159)', 'rgba(112, 76, 159, 0.5)'],
+                        5: ['rgb(77, 46, 110)', 'rgba(77, 46, 110, 0.5)'],
+                        6: ['rgb(128, 128, 128)', 'rgb(128, 128, 128, 0.5)'],
+                        7: ['rgb(102, 171, 60)', 'rgba(102, 171, 60, 0.5)'],
+                        8: ['rgb(243, 96, 188)', 'rgb(235, 189, 218 )'],
+                        9: ['rgb(230, 41, 61)', 'rgba(235, 189, 194)'],
+                        10: ['rgb(50, 219, 201)', 'rgb(165, 218, 212)'],
+                        11: ['rgb(153, 220, 19)', 'rgb(182, 212, 123)'],
+                        12: ['rgb(232, 187, 49)', 'rgb(231, 183, 152)'],
+                        13: ['rgb(51, 205, 91)', 'rgb(153, 209, 167)'],
+                        14: ['rgb(55, 156, 196 )', 'rgb(137, 182, 200)'],
+                        15: ['rgb(95, 43, 198 )', 'rgb(155, 133, 197)'],
+                        16: ['rgb(255, 38, 245 )', 'rgb(254, 204, 251)'],
+                        17: ['rgb(162, 73, 113 )', 'rgb(167, 134, 149 )'],
                     }
-
-
-
+                    let claves = Object.keys(coloresBarra);
+                    let longitud = claves.length;
+                    let i = 1;
                     datosApi.valoresTotalizadosPositivos.forEach((agrupaciones) => {
-                        console.log(agrupaciones.idAgrupacion)
                         const grilla = `
                             <h4 id="agrupacionNombre">${agrupaciones.nombreAgrupacion}</h4>
                         `;
@@ -359,20 +360,27 @@ function filtrar() {
                         let primerColor;
                         let segundoColor;
                         // Mover el bloque if fuera del bucle de listas
-                        console.log(coloresBarra.hasOwnProperty(agrupaciones.idAgrupacion))
-                        if (coloresBarra.hasOwnProperty(agrupaciones.idAgrupacion)) {
-                            let colores = coloresBarra[agrupaciones.idAgrupacion];
-                            primerColor = colores[0];
-                            segundoColor = colores[1];
-                        } else {
-                            primerColor = 'blue'
+                        while(i <= longitud){
+                            if (coloresBarra.hasOwnProperty(i)) {
+                                console.log(i.toString() + " Dentro del if")
+                                let colores = coloresBarra[i];
+                                primerColor = colores[0];
+                                segundoColor = colores[1];
+
+                            } else {
+                                primerColor = 'blue'
+                                segundoColor = 'red'
+                            }
+                            break
                         }
-                        console.log(agrupaciones.votosPorcentaje)
+                        i = i + 1;
+
                         // LA PARTE DE && agrupaciones.votosPorcentaje > 2) NO VA, ES SOLO PARA VER BARRAS ALTAS
-                        if (contadorBarras < 8 && agrupaciones.votosPorcentaje > 2) {
+                        // if (contadorBarras < 8 && agrupaciones.votosPorcentaje > 1) {
+                        if (contadorBarras < 8 && agrupaciones.votosPorcentaje > 0.2)  {
                             document.getElementById('grid_barras').innerHTML += ` 
                                                     <div class="bar" style="--bar-value:${agrupaciones.votosPorcentaje}%;" data-name="${agrupaciones.nombreAgrupacion}" title="Your Blog 85%">
-                                                        <div class="bar" style="--bar-value:${agrupaciones.votosPorcentaje}%;--bar-color:var(--grafica-amarillo);"
+                                                        <div class="bar" style="--bar-value:${agrupaciones.votosPorcentaje}% margin-bottom: 25px;;--bar-color:${primerColor};"
                                                             title="${agrupaciones.nombreAgrupacion}85%"></div>
                                                     </div>
                                                     `
@@ -384,10 +392,11 @@ function filtrar() {
                             let resultado = lista.votos * 100 / agrupaciones.votos;
                             let barraNumero;
                             let totalVotos;
-
                             if (resultado.toFixed(0) == 0 || isNaN(resultado)) {
-                                barraNumero = "";
+                                barraNumero = 0 + " %";
+                                widthBarra = 0
                             } else {
+                                widthBarra = resultado.toFixed(0).toString()
                                 barraNumero = resultado.toFixed(0).toString() + "%";
                             }
 
@@ -397,13 +406,13 @@ function filtrar() {
                                         <p><b>${lista.nombre}</b></p>
                                     </div>
                                     <div class="partidopoliticoright">
-                                        <p>${(resultado.toFixed(2))}%</p>
+                                        <p>${(barraNumero)}%</p>
                                         <p>${lista.votos} VOTOS</p>
                                     </div>
                                 </div>
                     
                                 <div class="progress" style="background: ${segundoColor};">
-                                    <div class="progress-bar" style="width:${resultado.toFixed(0)}%; background: ${primerColor};">
+                                    <div class="progress-bar" style="width:${widthBarra}%; background: ${primerColor};">
                                         <span class="progress-bar-text">${barraNumero}</span>
                                     </div>
                                 </div>
@@ -412,54 +421,6 @@ function filtrar() {
                             document.getElementById('agrupaciones_politicas').innerHTML += itemGrilla;
                         });
                     });
-
-                    // datosApi.valoresTotalizadosPositivos.forEach((agrupaciones) => {
-
-                    //     const grilla = `
-                    //     <h4 id="agrupacionNombre">${agrupaciones.nombreAgrupacion}</h4>
-                    //     `;
-                    //     document.getElementById('agrupaciones_politicas').innerHTML += grilla
-                    //     if (coloresBarra.hasOwnProperty(agrupaciones.idAgrupacion)) {
-                    //         let colores = coloresBarra[agrupaciones.idAgrupacion];
-                    //         let primerColor = colores[0];
-                    //         // let segundoColor = colores[1];
-                    //         console.log(primerColor)
-                    //     }
-                    //     agrupaciones.listas.forEach((lista) => {
-
-                    //         let resultado = lista.votos * 100 / agrupaciones.votos
-                    //         let barraNumero;
-                    //         let totalVotos;
-                    //         if (resultado.toFixed(0) == 0 || isNaN(resultado)){
-                    //             barraNumero = ""
-                    //         } 
-                    //         else {
-                    //             barraNumero = resultado.toFixed(0).toString() + "%"
-                    //         }
-                    //         const itemGrilla = `
-                    //         <div class="partidopolitico">
-                    //         <div class="partidopoliticoleft">
-                    //             <p><b>${lista.nombre}</b></p>
-                    //         </div>
-                    //         <div class="partidopoliticoright">
-                    //             <p>${(resultado.toFixed(2))}%</p>
-                    //             <p>${lista.votos} VOTOS</p>
-                    //         </div>
-                    //     </div>
-
-                    //     <div class="progress" style="background: var(--grafica-amarillo-claro);">
-                    //         <div class="progress-bar" style="width:${resultado.toFixed(0)}%; background: ${primerColor};">
-                    //             <span class="progress-bar-text">${barraNumero}</span>
-                    //         </div>
-                    //     </div>
-                    //     </div>
-                    //     `;
-
-                    //         document.getElementById('agrupaciones_politicas').innerHTML += itemGrilla
-                    //     })
-                    //     // tarjeta.innerHTML += itemGrilla;
-
-                    // })
                 }
 
 
@@ -479,7 +440,9 @@ function agregaInforme() {
     let distritoId = distritoFiltro.value;
     let seccionProvincialId = document.getElementById('hdSeccionProvincial').value;
     let seccionId = seccionFiltro.value;
-
+    if (seccionProvincialId == '' || seccionProvincialId.length === 0){
+        seccionProvincialId = 0
+    }
     listaInformes = [anioEleccion, tipoRecuento, tipoEleccion, categoriaId, distritoId, seccionProvincialId, seccionId];
     localStorage.setItem('INFORMES', listaInformes);
 }
