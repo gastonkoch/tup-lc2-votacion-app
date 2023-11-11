@@ -446,6 +446,9 @@ function agregaInforme() {
     if (seccionProvincialId == '' || seccionProvincialId.length === 0){
         seccionProvincialId = 0
     }
+    let titulo = `Elecciones ${anioEleccion} | PASO`
+    let subtitulo = `${anioEleccion} > PASO>${localStorage.getItem('cargo_seleccionado')} > ${localStorage.getItem('distrito_seleccionado')} > ${localStorage.getItem('seccion_seleccionado')}`
+    localStorage.setItem('titulo', titulo);
     listaInformes = [anioEleccion, tipoRecuento, tipoEleccion, categoriaId, distritoId, seccionProvincialId, seccionId];
     localStorage.setItem('INFORMES', listaInformes);
 }
