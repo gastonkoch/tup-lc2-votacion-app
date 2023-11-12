@@ -381,7 +381,7 @@ function filtrar() {
 
                         // LA PARTE DE && agrupaciones.votosPorcentaje > 2) NO VA, ES SOLO PARA VER BARRAS ALTAS
                         
-                        if (contadorBarras < 8 && agrupaciones.votosPorcentaje > 0.2)  {
+                        if (contadorBarras < 8)  {
                             document.getElementById('grid_barras').innerHTML += ` 
                                                     <div class="bar" style="--bar-value:${agrupaciones.votosPorcentaje}%;" data-name="${agrupaciones.nombreAgrupacion}" title="Your Blog 85%">
                                                         <div class="bar" style="--bar-value:${agrupaciones.votosPorcentaje}% margin-bottom: 25px;;--bar-color:${primerColor};"
@@ -426,8 +426,7 @@ function filtrar() {
                         });
                     });
                 }
-
-
+                document.querySelector('.foot').style.margin = '10% 20px 0;'
             })
             .catch(error => {
                 console.error('Error:', error);

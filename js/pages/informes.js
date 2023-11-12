@@ -4,15 +4,7 @@
 //     document.getElementById('mapa').innerHTML = mapas[i].svg;
 //   }
 // }
-
-document.getElementById('mesaComputada').innerHTML = "3000"
-document.getElementById('electores').innerHTML = "300"
-document.getElementById('participacionSobreEscrutado').innerHTML = "30" + "%"
-
-muestra_oculta('verde')
-muestra_oculta('rojo')
-muestra_oculta('amarillo')
-
+document.getElementById('tablaPrincipal').style.display = 'none'
 muestra_oculta('verde')
 muestra_oculta('rojo')
 muestra_oculta('amarillo')
@@ -53,46 +45,93 @@ muestra_oculta('amarillo')
 //   <h2>${titulo}</h2>
 //   <p>${subtitulo}</p>
 //   `
+async function obtenerInformes() {
+  const informeArray = localStorage.getItem('INFORMES');
 
-//   let url = "https://resultados.mininterior.gob.ar/api/resultados/getResultados"
-//   let parametros = `?anioEleccion=${anioEleccion}&tipoRecuento=${tipoRecuento}&tipoEleccion=${tipoEleccion}&categoriaId=${categoriaId}&distritoId=${distritoId}&seccionProvincialId=${seccionProvincialId}&seccionId=${seccionId}&circuitoId=${circuitoId}&mesaId=${mesaId}`
+  if (!informeArray) {
+    // No hay informes, salir de la función
+    return;
+  }
+
+  let url = "https://resultados.mininterior.gob.ar/api/resultados/getResultados";
+  let parametros = `?anioEleccion=${anioEleccion}&tipoRecuento=${tipoRecuento}&tipoEleccion=${tipoEleccion}&categoriaId=${categoriaId}&distritoId=${distritoId}&seccionProvincialId=${seccionProvincialId}&seccionId=${seccionId}&circuitoId=${circuitoId}&mesaId=${mesaId}`;
+
+  console.log(url + parametros);
+
+  try {
+    const response = await fetch(url + parametros);
+
+    if (response.status === 200) {
+      const datosApi = await response.json();
+
+      const estadoRecuento = datosApi.estadoRecuento;
+
+      document.getElementById('mesaComputada').innerHTML = estadoRecuento.mesasTotalizadas
+      document.getElementById('electores').innerHTML = estadoRecuento.cantidadElectores
+      document.getElementById('participacionSobreEscrutado').innerHTML = estadoRecuento.participacionPorcentaje + "%"
+
+      datosApi.valoresTotalizadosPositivos.forEach((agrupaciones) => {
+        document.getElementById('leftgrilla').innerHTML += `
+        <p>${agrupaciones.nombreAgrupacion}</p> 
+      `;
+        document.getElementById('rigthgrilla').innerHTML += `
+        <p>${agrupaciones.votosPorcentaje}% <br>${agrupaciones.votos} votos</p>
+        `;
+      });
+      
+      document.getElementById('tablaPrincipal').style.display = 'flex'
+    } else {
+      let mensajeRojo = "Hubo un error en la comunicación con el servidor, por favor contáctese con soporte";
+      document.getElementById('mensaje_rojo').innerHTML = mensajeRojo;
+      muestra_oculta('rojo');
+    }
+  } catch (error) {
+    console.error('Error:', error);
+  }
+}
+
+// Llamar a la función async
+obtenerInformes();
+
+// let url = "https://resultados.mininterior.gob.ar/api/resultados/getResultados"
+// let parametros = `?anioEleccion=${anioEleccion}&tipoRecuento=${tipoRecuento}&tipoEleccion=${tipoEleccion}&categoriaId=${categoriaId}&distritoId=${distritoId}&seccionProvincialId=${seccionProvincialId}&seccionId=${seccionId}&circuitoId=${circuitoId}&mesaId=${mesaId}`
 
 
 
-//   console.log(url + parametros)
+// console.log(url + parametros)
 
-//   fetch(url + parametros)
-//     .then(response => {
-//       // Si no es exitoso retorno el error
-//       if (response.status === 200) {
-//         return response.json();
-//       } else {
-//         let mensaje_rojo = "Hubo un error en la comunicación con el servidor, por favor contactese con soporte"
-//         document.getElementById('mensaje_rojo').innerHTML = mensaje_rojo
-//         muestra_oculta('rojo')
-//       }
-//     })
-//     .then(datosApi => {
+// fetch(url + parametros)
+//   .then(response => {
+//     // Si no es exitoso retorno el error
+//     if (response.status === 200) {
+//       return response.json();
+//     } else {
+//       let mensaje_rojo = "Hubo un error en la comunicación con el servidor, por favor contactese con soporte"
+//       document.getElementById('mensaje_rojo').innerHTML = mensaje_rojo
+//       muestra_oculta('rojo')
+//     }
+//   })
+//   .then(datosApi => {
 
-//       const estadoRecuento = datosApi.estadoRecuento;
+//     const estadoRecuento = datosApi.estadoRecuento;
 
-//       document.getElementById('mesaComputada').innerHTML = estadoRecuento.mesasTotalizadas
-//       document.getElementById('electores').innerHTML = estadoRecuento.cantidadElectores
-//       document.getElementById('participacionSobreEscrutado').innerHTML = estadoRecuento.participacionPorcentaje + "%"
+//     document.getElementById('mesaComputada').innerHTML = estadoRecuento.mesasTotalizadas
+//     document.getElementById('electores').innerHTML = estadoRecuento.cantidadElectores
+//     document.getElementById('participacionSobreEscrutado').innerHTML = estadoRecuento.participacionPorcentaje + "%"
 
-//       datosApi.valoresTotalizadosPositivos.forEach((agrupaciones) => {
-//         document.getElementById('leftgrilla').innerHTML += `
+//     datosApi.valoresTotalizadosPositivos.forEach((agrupaciones) => {
+//       document.getElementById('leftgrilla').innerHTML += `
 //         <p>${agrupaciones.nombreAgrupacion}</p> 
 //       `;
-//         document.getElementById('rigthgrilla').innerHTML += `
+//       document.getElementById('rigthgrilla').innerHTML += `
 //         <p>${agrupaciones.votosPorcentaje}% <br>${agrupaciones.votos} votos</p>
 //         `;
-
+//      document.getElementById('tablaPrincipal').style.display = 'flex'
 //     });
-//     })
-//     .catch(error => {
-//       console.error('Error:', error);
-//    });
+//   })
+//   .catch(error => {
+//     console.error('Error:', error);
+//   });
 
 // } else {
 //   document.getElementById('mensaje_amarrillo').innerHTML = "No hay informes guardados para mostrar"

@@ -205,3 +205,10 @@ h3 {
     color: white;
     width: 130px;
 }
+
+.foot {
+    display: flex;
+    align-items: center;
+    margin: 10% 20px 0;
+    padding: 10px;
+  }

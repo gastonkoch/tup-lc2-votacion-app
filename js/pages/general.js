@@ -28,8 +28,7 @@ document.getElementById('mensaje_amarrillo').innerHTML = "Debe seleccionar los v
 muestra_oculta('verde')
 muestra_oculta('rojo')
 // muestra_oculta('amarillo')
-muestra_oculta('verde')
-muestra_oculta('rojo')
+
 
 
 function cargarCargos() {
@@ -396,47 +395,9 @@ function filtrar() {
                                                 `
                         contadorBarras += 1
                     }
-
-                    console.log("Arranca la consulta")
-                    console.log(agrupaciones.listas)
-                    console.log("Termina la consulta")
-                    // agrupaciones.listas.forEach((lista) => {
-                    //     console.log("a")
-                    //     let resultado = lista.votos * 100 / agrupaciones.votos;
-                    //     let barraNumero;
-                    //     let totalVotos;
-                    //     if (resultado.toFixed(0) == 0 || isNaN(resultado)) {
-                    //         barraNumero = 0 + " %";
-                    //         widthBarra = 0
-                    //     } else {
-                    //         widthBarra = resultado.toFixed(0).toString()
-                    //         barraNumero = resultado.toFixed(0).toString() + "%";
-                    //     }
-
-                    //     const itemGrilla = `
-                    //         <div class="partidopolitico">
-                    //             <div class="partidopoliticoleft">
-                    //                 <p><b>${lista.nombre}</b></p>
-                    //             </div>
-                    //             <div class="partidopoliticoright">
-                    //                 <p>${(barraNumero)}%</p>
-                    //                 <p>${lista.votos} VOTOS</p>
-                    //             </div>
-                    //         </div>
-                
-                    //         <div class="progress" style="background: ${segundoColor};">
-                    //             <div class="progress-bar" style="width:${widthBarra}%; background: ${primerColor};">
-                    //                 <span class="progress-bar-text">${barraNumero}</span>
-                    //             </div>
-                    //         </div>
-                    //     `;
-
-                    //     document.getElementById('agrupaciones_politicas').innerHTML += itemGrilla;
-                    // });
                 });
             }
-            
-
+            document.querySelector('.foot').style.margin = '10% 20px 0;'
         })
         .catch(error => {
             console.error('Error:', error);
