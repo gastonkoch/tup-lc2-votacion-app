@@ -1,9 +1,10 @@
-for (let i = 0; i < mapas.length; i++) {
-  const provincia = mapas[i].provincia;
-  if (localStorage.getItem('distrito_seleccionado').toUpperCase() == provincia.toUpperCase()) {
-    document.getElementById('mapa').innerHTML = mapas[i].svg;
-  }
-}
+// for (let i = 0; i < mapas.length; i++) {
+//   const provincia = mapas[i].provincia;
+//   if (localStorage.getItem('distrito_seleccionado').toUpperCase() == provincia.toUpperCase()) {
+//     document.getElementById('mapa').innerHTML = mapas[i].svg;
+//   }
+// }
+
 document.getElementById('mesaComputada').innerHTML = "3000"
 document.getElementById('electores').innerHTML = "300"
 document.getElementById('participacionSobreEscrutado').innerHTML = "30" + "%"
@@ -12,86 +13,91 @@ muestra_oculta('verde')
 muestra_oculta('rojo')
 muestra_oculta('amarillo')
 
-const informeArray = localStorage.getItem('INFORMES');
-var informe = informeArray.split(',')
-console.log(informe)
-if (informe && informe.length > 0) {
-  console.log(informe);
-  // Obtiene los datos necesarios para construir la URL de la API
-  let anioEleccion = informe[0];
-  let tipoRecuento = informe[1];
-  let tipoEleccion = informe[2];
-  let categoriaId = informe[3];
-  let distritoId = informe[4];
-  let seccionProvincialId = informe[5];
-  let seccionId = informe[6];
-  let circuitoId = "";
-  let mesaId = "";
+muestra_oculta('verde')
+muestra_oculta('rojo')
+muestra_oculta('amarillo')
 
 
-  let titulo = localStorage.getItem('titulo');
-  let subtitulo = localStorage.getItem('subtitulo');
-
-  if (seccionProvincialId == 0) {
-    seccionProvincialId = ""
-  }
-  for (let i = 0; i < mapas.length; i++) {
-    const provincia = mapas[i].provincia;
-    if (distritoId.toUpperCase() == provincia.toUpperCase()) {
-      document.getElementById('provinciaSeleccionada').innerHTML = mapas[i].provincia;
-      document.getElementById('provinciaSeleccionadaImagen').innerHTML = mapas[i].svg;
-      console.log("PROVINCIA")
-    }
-  }
-  document.getElementById('caja_c6').innerHTML += `
-  <h2>${titulo}</h2>
-  <p>${subtitulo}</p>
-  `
-
-  let url = "https://resultados.mininterior.gob.ar/api/resultados/getResultados"
-  let parametros = `?anioEleccion=${anioEleccion}&tipoRecuento=${tipoRecuento}&tipoEleccion=${tipoEleccion}&categoriaId=${categoriaId}&distritoId=${distritoId}&seccionProvincialId=${seccionProvincialId}&seccionId=${seccionId}&circuitoId=${circuitoId}&mesaId=${mesaId}`
+// const informeArray = localStorage.getItem('INFORMES');
+// var informe = informeArray.split(',')
+// console.log(informe)
+// if (informe && informe.length > 0) {
+//   console.log(informe);
+//   // Obtiene los datos necesarios para construir la URL de la API
+//   let anioEleccion = informe[0];
+//   let tipoRecuento = informe[1];
+//   let tipoEleccion = informe[2];
+//   let categoriaId = informe[3];
+//   let distritoId = informe[4];
+//   let seccionProvincialId = informe[5];
+//   let seccionId = informe[6];
+//   let circuitoId = "";
+//   let mesaId = "";
 
 
+//   let titulo = localStorage.getItem('titulo');
+//   let subtitulo = localStorage.getItem('subtitulo');
 
-  console.log(url + parametros)
+//   if (seccionProvincialId == 0) {
+//     seccionProvincialId = ""
+//   }
+//   for (let i = 0; i < mapas.length; i++) {
+//     const provincia = mapas[i].provincia;
+//     if (distritoId.toUpperCase() == provincia.toUpperCase()) {
+//       document.getElementById('provinciaSeleccionada').innerHTML = mapas[i].provincia;
+//       document.getElementById('provinciaSeleccionadaImagen').innerHTML = mapas[i].svg;
+//       console.log("PROVINCIA")
+//     }
+//   }
+//   document.getElementById('caja_c6').innerHTML += `
+//   <h2>${titulo}</h2>
+//   <p>${subtitulo}</p>
+//   `
 
-  fetch(url + parametros)
-    .then(response => {
-      // Si no es exitoso retorno el error
-      if (response.status === 200) {
-        return response.json();
-      } else {
-        let mensaje_rojo = "Hubo un error en la comunicación con el servidor, por favor contactese con soporte"
-        document.getElementById('mensaje_rojo').innerHTML = mensaje_rojo
-        muestra_oculta('rojo')
-      }
-    })
-    .then(datosApi => {
+//   let url = "https://resultados.mininterior.gob.ar/api/resultados/getResultados"
+//   let parametros = `?anioEleccion=${anioEleccion}&tipoRecuento=${tipoRecuento}&tipoEleccion=${tipoEleccion}&categoriaId=${categoriaId}&distritoId=${distritoId}&seccionProvincialId=${seccionProvincialId}&seccionId=${seccionId}&circuitoId=${circuitoId}&mesaId=${mesaId}`
 
-      const estadoRecuento = datosApi.estadoRecuento;
 
-      document.getElementById('mesaComputada').innerHTML = estadoRecuento.mesasTotalizadas
-      document.getElementById('electores').innerHTML = estadoRecuento.cantidadElectores
-      document.getElementById('participacionSobreEscrutado').innerHTML = estadoRecuento.participacionPorcentaje + "%"
 
-      datosApi.valoresTotalizadosPositivos.forEach((agrupaciones) => {
-        document.getElementById('leftgrilla').innerHTML += `
-        <p>${agrupaciones.nombreAgrupacion}</p> 
-      `;
-        document.getElementById('rigthgrilla').innerHTML += `
-        <p>${agrupaciones.votosPorcentaje}% <br>${agrupaciones.votos} votos</p>
-        `;
+//   console.log(url + parametros)
 
-    });
-    })
-    .catch(error => {
-      console.error('Error:', error);
-    });
+//   fetch(url + parametros)
+//     .then(response => {
+//       // Si no es exitoso retorno el error
+//       if (response.status === 200) {
+//         return response.json();
+//       } else {
+//         let mensaje_rojo = "Hubo un error en la comunicación con el servidor, por favor contactese con soporte"
+//         document.getElementById('mensaje_rojo').innerHTML = mensaje_rojo
+//         muestra_oculta('rojo')
+//       }
+//     })
+//     .then(datosApi => {
 
-} else {
-  document.getElementById('mensaje_amarrillo').innerHTML = "No hay informes guardados para mostrar"
-  muestra_oculta('amarillo')
-}
+//       const estadoRecuento = datosApi.estadoRecuento;
+
+//       document.getElementById('mesaComputada').innerHTML = estadoRecuento.mesasTotalizadas
+//       document.getElementById('electores').innerHTML = estadoRecuento.cantidadElectores
+//       document.getElementById('participacionSobreEscrutado').innerHTML = estadoRecuento.participacionPorcentaje + "%"
+
+//       datosApi.valoresTotalizadosPositivos.forEach((agrupaciones) => {
+//         document.getElementById('leftgrilla').innerHTML += `
+//         <p>${agrupaciones.nombreAgrupacion}</p> 
+//       `;
+//         document.getElementById('rigthgrilla').innerHTML += `
+//         <p>${agrupaciones.votosPorcentaje}% <br>${agrupaciones.votos} votos</p>
+//         `;
+
+//     });
+//     })
+//     .catch(error => {
+//       console.error('Error:', error);
+//    });
+
+// } else {
+//   document.getElementById('mensaje_amarrillo').innerHTML = "No hay informes guardados para mostrar"
+//   muestra_oculta('amarillo')
+// }
 
 function muestra_oculta(elementId) {
   switch (elementId) {

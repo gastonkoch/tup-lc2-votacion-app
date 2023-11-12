@@ -261,6 +261,11 @@ label {
     font-size: 12px;
     font-weight: 200;
     text-align: center;
+    align-items: center;
+}
+
+#mensaje_verde {
+    margin-left: 10px;
 }
 
 .rojo {
@@ -274,6 +279,11 @@ label {
     font-size: 12px;
     font-weight: 200;
     text-align: center;
+    align-items: center;
+}
+
+#mensaje_rojo{
+    margin-left: 10px;
 }
 
 .amarillo {
@@ -288,8 +298,13 @@ label {
     font-weight: 200;
     text-align: center;
     display: flex;
+    align-items: center;
+    
 }
 
+#mensaje_amarrillo {
+    margin-left: 10px;
+}
 
 .tarjeta {
     border-radius: 25px;

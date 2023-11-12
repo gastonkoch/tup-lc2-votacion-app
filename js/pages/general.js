@@ -28,6 +28,9 @@ document.getElementById('mensaje_amarrillo').innerHTML = "Debe seleccionar los v
 muestra_oculta('verde')
 muestra_oculta('rojo')
 // muestra_oculta('amarillo')
+muestra_oculta('verde')
+muestra_oculta('rojo')
+
 
 function cargarCargos() {
     const anios = document.getElementById('year')

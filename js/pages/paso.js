@@ -29,6 +29,7 @@ muestra_oculta('verde')
 muestra_oculta('rojo')
 // muestra_oculta('amarillo')
 
+
 function cargarCargos() {
     const anios = document.getElementById('year')
     const cargoFiltro = document.getElementById('cargo');

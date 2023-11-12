@@ -124,7 +124,13 @@
     font-size: 12px;
     font-weight: 200;
     text-align: center;
+    align-items: center;
 }
+
+#mensaje_verde {
+    margin-left: 10px;
+}
+
 
 .rojo {
     background-color: var(--mensaje-usuario-rojo);
@@ -137,6 +143,11 @@
     font-size: 12px;
     font-weight: 200;
     text-align: center;
+    align-items: center;
+}
+
+#mensaje_rojo{
+    margin-left: 10px;
 }
 
 .amarillo {
@@ -150,6 +161,11 @@
     font-size: 12px;
     font-weight: 200;
     text-align: center;
+    align-items: center;
+}
+
+#mensaje_amarrillo {
+    margin-left: 10px;
 }
 
 #sec-titulo{
@@ -210,12 +226,13 @@
     display: flex;
     justify-content: center;
     font-size: 13px;
+    margin-left: 10px;
 }
 
-.c6 > h2,p{
-    margin-left: 10px;
+/* .c6 > p{
+
     margin-right: 5px;
-}
+} */
 
 .c6 > p {
     display: flex;
@@ -317,25 +334,21 @@ p {
 
 .texto-tarjetas {
     display: flex;
-    align-items: center;
+    flex-direction: column;
 }
 
-.texto-tarjetas > p{
+.texto-tarjetas > h4{
+    height: 10px;
+}
+
+.texto-tarjetas > h4,p{
     color: white;
+    /* font-weight: bold; */
 }
 
-/* svg {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-} */
 
-/* svg > path {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-} */
- #caja_8{
+
+#caja_8{
     overflow-x: hidden;
     overflow-y: auto;
 }
