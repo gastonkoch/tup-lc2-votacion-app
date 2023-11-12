@@ -449,6 +449,7 @@ function agregaInforme() {
     let titulo = `Elecciones ${anioEleccion} | PASO`
     let subtitulo = `${anioEleccion} > PASO>${localStorage.getItem('cargo_seleccionado')} > ${localStorage.getItem('distrito_seleccionado')} > ${localStorage.getItem('seccion_seleccionado')}`
     localStorage.setItem('titulo', titulo);
+    localStorage.setItem('subtitulo', subtitulo);
     listaInformes = [anioEleccion, tipoRecuento, tipoEleccion, categoriaId, distritoId, seccionProvincialId, seccionId];
     localStorage.setItem('INFORMES', listaInformes);
 }

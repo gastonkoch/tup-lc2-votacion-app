@@ -1,8 +1,8 @@
 for (let i = 0; i < mapas.length; i++) {
-    const provincia = mapas[i].provincia;
-    if (localStorage.getItem('distrito_seleccionado').toUpperCase() == provincia.toUpperCase()) {
-        document.getElementById('mapa').innerHTML = mapas[i].svg;
-    }
+  const provincia = mapas[i].provincia;
+  if (localStorage.getItem('distrito_seleccionado').toUpperCase() == provincia.toUpperCase()) {
+    document.getElementById('mapa').innerHTML = mapas[i].svg;
+  }
 }
 
 
@@ -26,14 +26,11 @@ if (informe && informe.length > 0) {
   let circuitoId = "";
   let mesaId = "";
 
-  let nombreCargo = informe[7];
-  let nombreDistrito = informe[8];
-  let nombreSeccion = informe[9];
 
   let titulo = localStorage.getItem('titulo');
-  let subtitulo = `${anioEleccion} > PASO> ${nombreCargo} > ${nombreDistrito} > ${nombreSeccion}`
+  let subtitulo = localStorage.getItem('subtitulo');
 
-  if (seccionProvincialId == 0){
+  if (seccionProvincialId == 0) {
     seccionProvincialId = ""
   }
   for (let i = 0; i < mapas.length; i++) {
@@ -45,7 +42,7 @@ if (informe && informe.length > 0) {
   }
   document.getElementById('caja_c6').innerHTML += `
   <h2>${titulo}</h2>
-  <p>2023 >${subtitulo}</p>
+  <p>${subtitulo}</p>
   `
 
   let url = "https://resultados.mininterior.gob.ar/api/resultados/getResultados"
@@ -73,9 +70,16 @@ if (informe && informe.length > 0) {
       document.getElementById('mesaComputada').innerHTML = estadoRecuento.mesasTotalizadas
       document.getElementById('electores').innerHTML = estadoRecuento.cantidadElectores
       document.getElementById('participacionSobreEscrutado').innerHTML = estadoRecuento.participacionPorcentaje + "%"
-      
 
+      datosApi.valoresTotalizadosPositivos.forEach((agrupaciones) => {
+        document.getElementById('leftgrilla').innerHTML += `
+        <p>${agrupaciones.nombreAgrupacion}</p> 
+      `;
+        document.getElementById('rigthgrilla').innerHTML += `
+        <p>${agrupaciones.votosPorcentaje}% <br>${agrupaciones.votos} votos</p>
+        `;
 
+    });
     })
     .catch(error => {
       console.error('Error:', error);
