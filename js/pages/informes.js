@@ -4,7 +4,9 @@ for (let i = 0; i < mapas.length; i++) {
     document.getElementById('mapa').innerHTML = mapas[i].svg;
   }
 }
-
+document.getElementById('mesaComputada').innerHTML = "3000"
+document.getElementById('electores').innerHTML = "300"
+document.getElementById('participacionSobreEscrutado').innerHTML = "30" + "%"
 
 muestra_oculta('verde')
 muestra_oculta('rojo')
@@ -38,6 +40,7 @@ if (informe && informe.length > 0) {
     if (distritoId.toUpperCase() == provincia.toUpperCase()) {
       document.getElementById('provinciaSeleccionada').innerHTML = mapas[i].provincia;
       document.getElementById('provinciaSeleccionadaImagen').innerHTML = mapas[i].svg;
+      console.log("PROVINCIA")
     }
   }
   document.getElementById('caja_c6').innerHTML += `
