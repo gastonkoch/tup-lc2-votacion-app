@@ -27,7 +27,6 @@ divElecciones.display = 'None'
 document.getElementById('mensaje_amarrillo').innerHTML = "Debe seleccionar los valores a filtrar y hacer clic en el botón FILTRAR"
 muestra_oculta('verde')
 muestra_oculta('rojo')
-// muestra_oculta('amarillo')
 
 
 function cargarCargos() {
@@ -229,8 +228,6 @@ function filtrar() {
     }
     let mensaje_amarillo = ''
     if (erroresCant > 0) {
-
-
         if (erroresCant == 1) {
             mensaje_amarillo = `   El filtro ${error}esta vacío, por favor complete todos los campos`
         } else if (erroresCant > 1) {
@@ -241,7 +238,7 @@ function filtrar() {
     } else {
         let contadorBarras = 0
         let anioEleccion = anios.value
-        let categoriaId = 2;
+        let categoriaId = cargoFiltro.value;
         let distritoId = distritoFiltro.value;
         let seccionProvincialId = document.getElementById('hdSeccionProvincial').value;
         let seccionId = seccionFiltro.value;
@@ -250,8 +247,6 @@ function filtrar() {
 
         let url = "https://resultados.mininterior.gob.ar/api/resultados/getResultados"
         let parametros = `?anioEleccion=${anioEleccion}&tipoRecuento=${tipoRecuento}&tipoEleccion=${tipoEleccion}&categoriaId=${categoriaId}&distritoId=${distritoId}&seccionProvincialId=${seccionProvincialId}&seccionId=${seccionId}&circuitoId=${circuitoId}&mesaId=${mesaId}`
-
-
 
         console.log(url + parametros)
 
@@ -273,7 +268,8 @@ function filtrar() {
                 document.getElementById('mesaComputada').innerHTML = estadoRecuento.mesasTotalizadas
                 document.getElementById('electores').innerHTML = estadoRecuento.cantidadElectores
                 document.getElementById('participacionSobreEscrutado').innerHTML = estadoRecuento.participacionPorcentaje + "%"
-                // console.log(datosApi)
+                
+                
                 console.log(JSON.stringify(datosApi))
                 if (estadoRecuento.mesasTotalizadas == 0) {
                     document.getElementById('mensaje_amarrillo').innerHTML = 'No se encontró información para la consulta realizada'
@@ -282,7 +278,7 @@ function filtrar() {
                     let divElecciones = document.getElementById('elecciones_div')
                     divElecciones.style.display = 'block'
                     document.getElementById('titulo_elecciones').innerHTML = `Elecciones ${anioEleccion} | PASO`
-                    // poner display y cambiar los titulos 
+                    
                     let divDatos = document.querySelector('.container')
                     let divTarjetas = document.querySelector('.tarjetas')
                     let divFooter = document.querySelector('.foot')
@@ -364,7 +360,7 @@ function filtrar() {
                         document.getElementById('agrupaciones_politicas').innerHTML += grilla;
                         let primerColor;
                         let segundoColor;
-                        // Mover el bloque if fuera del bucle de listas
+                        
                         while(i <= longitud){
                             if (coloresBarra.hasOwnProperty(i)) {
                                 let colores = coloresBarra[i];
@@ -378,8 +374,6 @@ function filtrar() {
                             break
                         }
                         i = i + 1;
-
-                        // LA PARTE DE && agrupaciones.votosPorcentaje > 2) NO VA, ES SOLO PARA VER BARRAS ALTAS
                         
                         if (contadorBarras < 8)  {
                             document.getElementById('grid_barras').innerHTML += ` 
@@ -395,7 +389,6 @@ function filtrar() {
                         agrupaciones.listas.forEach((lista) => {
                             let resultado = lista.votos * 100 / agrupaciones.votos;
                             let barraNumero;
-                            let totalVotos;
                             if (resultado.toFixed(0) == 0 || isNaN(resultado)) {
                                 barraNumero = 0 + " %";
                                 widthBarra = 0
