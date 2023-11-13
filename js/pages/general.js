@@ -352,9 +352,6 @@ function filtrar() {
                 let claves = Object.keys(coloresBarra);
                 let longitud = claves.length;
                 let i = 1;
-                console.log("Arranca la consulta")
-                console.log(datosApi.valoresTotalizadosPositivos)
-                console.log("Termina la consulta")
                 datosApi.valoresTotalizadosPositivos.forEach((agrupaciones) => {
                     let primerColor;
                     let segundoColor;

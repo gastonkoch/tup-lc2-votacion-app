@@ -1,14 +1,9 @@
-for (let i = 0; i < mapas.length; i++) {
-  const provincia = mapas[i].provincia;
-  if (localStorage.getItem('distrito_seleccionado').toUpperCase() == provincia.toUpperCase()) {
-    document.getElementById('mapa').innerHTML = mapas[i].svg;
-  }
-}
 document.getElementById('tablaPrincipal').style.display = 'none'
 muestra_oculta('verde')
 muestra_oculta('rojo')
 muestra_oculta('amarillo')
-
+document.getElementById('mensaje_amarrillo').innerHTML = "No hay informes guardados para mostrar"
+muestra_oculta('amarillo')
 
 const informeArray = localStorage.getItem('INFORMES');
 var informe = informeArray.split(',')
@@ -22,7 +17,13 @@ if (informe && informe.length > 0) {
   let seccionId = informe[6];
   let circuitoId = "";
   let mesaId = "";
-
+  muestra_oculta('amarillo')
+  for (let i = 0; i < mapas.length; i++) {
+    const provincia = mapas[i].provincia;
+    if (localStorage.getItem('distrito_seleccionado').toUpperCase() == provincia.toUpperCase()) {
+      document.getElementById('mapa').innerHTML = mapas[i].svg;
+    }
+  }
 
   let titulo = localStorage.getItem('titulo');
   let subtitulo = localStorage.getItem('subtitulo');
@@ -35,7 +36,6 @@ if (informe && informe.length > 0) {
     if (distritoId.toUpperCase() == provincia.toUpperCase()) {
       document.getElementById('provinciaSeleccionada').innerHTML = mapas[i].provincia;
       document.getElementById('provinciaSeleccionadaImagen').innerHTML = mapas[i].svg;
-      console.log("PROVINCIA")
     }
   }
   document.getElementById('caja_c6').innerHTML += `
@@ -76,13 +76,10 @@ if (informe && informe.length > 0) {
         document.getElementById('tablaPrincipal').style.display = 'flex'
       });
     })
+    document.querySelector('.foot').style.margin = '30% 20px 0;'
     .catch(error => {
       console.error('Error:', error);
     });
-
-} else {
-  document.getElementById('mensaje_amarrillo').innerHTML = "No hay informes guardados para mostrar"
-  muestra_oculta('amarillo')
 }
 
 // FUNCION ASYNC NO UTILIZADA
@@ -119,7 +116,7 @@ if (informe && informe.length > 0) {
 //         <p>${agrupaciones.votosPorcentaje}% <br>${agrupaciones.votos} votos</p>
 //         `;
 //       });
-      
+
 //       document.getElementById('tablaPrincipal').style.display = 'flex'
 //     } else {
 //       let mensajeRojo = "Hubo un error en la comunicación con el servidor, por favor contáctese con soporte";

@@ -370,7 +370,6 @@ function filtrar() {
                             break
                         }
                         i = i + 1;
-                        console.log(contadorBarras)
                         if (contadorBarras < 7)  {
                             document.getElementById('grid_barras').innerHTML += ` 
                                                     <div class="bar" style="--bar-value:${agrupaciones.votosPorcentaje}%;" data-name="${agrupaciones.nombreAgrupacion}" title="Your Blog 85%">
