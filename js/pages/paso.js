@@ -244,7 +244,10 @@ function filtrar() {
         let seccionId = seccionFiltro.value;
         let circuitoId = '';
         let mesaId = '';
-
+        document.getElementById('grid_barras').innerHTML = '';
+        document.getElementById('agrupaciones_politicas').innerHTML = '';
+        document.getElementById('provinciaSeleccionada').innerHTML = '';
+        document.getElementById('provinciaSeleccionadaImagen').innerHTML = '';
         let url = "https://resultados.mininterior.gob.ar/api/resultados/getResultados"
         let parametros = `?anioEleccion=${anioEleccion}&tipoRecuento=${tipoRecuento}&tipoEleccion=${tipoEleccion}&categoriaId=${categoriaId}&distritoId=${distritoId}&seccionProvincialId=${seccionProvincialId}&seccionId=${seccionId}&circuitoId=${circuitoId}&mesaId=${mesaId}`
 
@@ -293,13 +296,9 @@ function filtrar() {
                     divTarjetas.style.marginBottom = '100px';
                     divFooter.style.margin = "0 20px";
 
-
-
                     let tituloElecciones = document.getElementById('subtitulo_elecciones')
                     tituloElecciones.display = 'block'
                     document.getElementById('subtitulo_elecciones').innerHTML = `${anioEleccion} > PASO>${localStorage.getItem('cargo_seleccionado')} > ${localStorage.getItem('distrito_seleccionado')} > ${localStorage.getItem('seccion_seleccionado')}`
-
-
 
                     for (let i = 0; i < mapas.length; i++) {
                         const provincia = mapas[i].provincia;
@@ -349,9 +348,6 @@ function filtrar() {
                     let claves = Object.keys(coloresBarra);
                     let longitud = claves.length;
                     let i = 1;
-                    console.log("Arranca la consulta")
-                    console.log(datosApi.valoresTotalizadosPositivos)
-                    console.log("Termina la consulta")
 
                     datosApi.valoresTotalizadosPositivos.forEach((agrupaciones) => {
                         const grilla = `
@@ -374,8 +370,8 @@ function filtrar() {
                             break
                         }
                         i = i + 1;
-                        
-                        if (contadorBarras < 8)  {
+                        console.log(contadorBarras)
+                        if (contadorBarras < 7)  {
                             document.getElementById('grid_barras').innerHTML += ` 
                                                     <div class="bar" style="--bar-value:${agrupaciones.votosPorcentaje}%;" data-name="${agrupaciones.nombreAgrupacion}" title="Your Blog 85%">
                                                         <div class="bar" style="--bar-value:${agrupaciones.votosPorcentaje}% margin-bottom: 25px;;--bar-color:${primerColor};"

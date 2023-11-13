@@ -246,7 +246,10 @@ function filtrar() {
         let seccionId = seccionFiltro.value;
         let circuitoId = '';
         let mesaId = '';
-
+        document.getElementById('grid_barras').innerHTML = '';
+        document.getElementById('agrupaciones_politicas').innerHTML = '';
+        document.getElementById('provinciaSeleccionada').innerHTML = '';
+        document.getElementById('provinciaSeleccionadaImagen').innerHTML = '';
         let url = "https://resultados.mininterior.gob.ar/api/resultados/getResultados"
         let parametros =`?anioEleccion=${anioEleccion}&tipoRecuento=${tipoRecuento}&tipoEleccion=${tipoEleccion}&categoriaId=${categoriaId}&distritoId=${distritoId}&seccionProvincialId=${seccionProvincialId}&seccionId=${seccionId}&circuitoId=${circuitoId}&mesaId=${mesaId}`  
 
@@ -381,7 +384,7 @@ function filtrar() {
                     
                     i = i + 1;
                     
-                    if (contadorBarras < 8)  {
+                    if (contadorBarras < 7)  {
                         document.getElementById('grid_barras').innerHTML += ` 
                                                 <div class="bar" style="--bar-value:${agrupaciones.votosPorcentaje}%;" data-name="${agrupaciones.nombreAgrupacion}" title="Your Blog 85%">
                                                     <div class="bar" style="--bar-value:${agrupaciones.votosPorcentaje}% margin-bottom: 25px;;--bar-color:${primerColor};"
